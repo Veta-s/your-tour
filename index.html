@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YourTour - Идеальные путешествия существуют</title>
+    <meta name="description" content="YourTour - туристическое агентство. Идеальные путешествия существуют. Популярные туры, авторские маршруты, походы, сплавы, велопрогулки.">
+    <meta name="keywords" content="туры, путешествия, горы, походы, сплавы, велопрогулки, авторские туры, отдых">
+    <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!-- SVG Sprite -->
+<svg style="display: none;">
+  <symbol id="icon-arrow" viewBox="0 0 22 16">
+    <path d="M21.7004 7.28331L15.1535 0.796818C14.7541 0.401061 14.1063 0.401061 13.7068 0.796818C13.3073 1.19266 13.3073 1.83433 13.7068 2.23017L18.5074 6.98647H1.02294C0.458032 6.98647 0 7.44029 0 7.99999C0 8.55961 0.458032 9.0135 1.02294 9.0135H18.5074L13.707 13.7698C13.3075 14.1656 13.3075 14.8073 13.707 15.2032C13.9067 15.4009 14.1686 15.5 14.4304 15.5C14.6921 15.5 14.9539 15.4009 15.1537 15.2032L21.7004 8.71667C22.0999 8.32083 22.0999 7.67915 21.7004 7.28331Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="icon-arrow-down" viewBox="0 0 18 11">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M9 10.4143L0.292889 1.7072C-0.0976351 1.31667 -0.0976348 0.683507 0.292889 0.292983C0.683414 -0.0975417 1.31658 -0.097542 1.7071 0.292983L9 7.58588L16.2929 0.292983C16.6834 -0.097542 17.3166 -0.0975417 17.7071 0.292983C18.0976 0.683507 18.0976 1.31667 17.7071 1.7072L9 10.4143Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="icon-facebook" viewBox="0 0 8 17">
+    <path d="M7.98809 0H5.27107C3.6587 0 1.86529 0.678114 1.86529 3.01522C1.87316 3.82956 1.86529 4.60945 1.86529 5.48717H0V8.45529H1.92302V17H5.45665V8.39891H7.78897L8 5.47885H5.39576C5.39576 5.47885 5.40159 4.17988 5.39576 3.80265C5.39576 2.87908 6.35681 2.93197 6.41462 2.93197C6.87195 2.93197 7.76115 2.9333 7.98942 2.93197V0H7.98809Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="icon-vk" viewBox="0 0 20 12">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M19.5395 0.805263C19.6802 0.331579 19.5395 0 18.883 0H16.6946C16.1318 0 15.8817 0.3 15.741 0.631579C15.741 0.631579 14.6312 3.37895 13.0524 5.14737C12.5366 5.66842 12.3177 5.82632 12.0363 5.82632C11.8957 5.82632 11.6924 5.66842 11.6924 5.19474V0.805263C11.6924 0.236842 11.5361 0 11.0672 0H7.62823C7.28433 0 7.06549 0.268421 7.06549 0.505263C7.06549 1.0421 7.84707 1.16842 7.94086 2.65263V5.90526C7.94086 6.61579 7.81581 6.7421 7.53444 6.7421C6.79975 6.7421 4.98648 3.99474 3.92353 0.836843C3.70469 0.252632 3.50148 0 2.93874 0H0.750317C0.125053 0 0 0.3 0 0.631579C0 1.21579 0.734686 4.12105 3.45459 7.95789C5.26785 10.5789 7.81581 12 10.1293 12C11.5205 12 11.6924 11.6842 11.6924 11.1474V9.15789C11.6924 8.52632 11.8175 8.4 12.2708 8.4C12.5991 8.4 13.1462 8.55789 14.4436 9.82105C15.9286 11.3211 16.1787 12 17.0072 12H19.1956C19.8209 12 20.1335 11.6842 19.9459 11.0684C19.7427 10.4526 19.0393 9.55263 18.1014 8.47895C17.5856 7.86316 16.8196 7.21579 16.6008 6.88421C16.2725 6.45789 16.3663 6.26842 16.6008 5.90526C16.6008 5.88947 19.2738 2.1 19.5395 0.805263Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="icon-telegram" viewBox="0 0 20 18">
+    <path d="M18.5196 0.00167666C18.2611 0.0137225 18.0177 0.0890085 17.8013 0.173329H17.7983C17.5789 0.260661 16.536 0.700333 14.9521 1.36586C13.3682 2.03441 11.3124 2.9017 9.27173 3.76298C5.1963 5.48251 1.18999 7.17495 1.18999 7.17495L1.23808 7.15688C1.23808 7.15688 0.961578 7.24722 0.673052 7.44598C0.525784 7.54235 0.363487 7.67485 0.22223 7.88264C0.0809728 8.09043 -0.0332358 8.40964 0.00884133 8.73789C0.0779675 9.29501 0.438625 9.62928 0.697096 9.81298C0.958573 9.99969 1.20803 10.087 1.20803 10.087H1.21404L4.97089 11.3548C5.13919 11.8969 6.11597 15.1131 6.3504 15.8539C6.48865 16.2966 6.6239 16.5737 6.79221 16.7845C6.87335 16.8929 6.96953 16.9832 7.08374 17.0555C7.12882 17.0826 7.17691 17.1037 7.225 17.1218C7.24002 17.1308 7.25505 17.1338 7.27308 17.1368L7.23401 17.1278C7.24603 17.1308 7.25505 17.1398 7.26407 17.1428C7.29412 17.1519 7.31516 17.1549 7.35423 17.1609C7.94932 17.3416 8.42719 16.9712 8.42719 16.9712L8.45424 16.9501L10.6723 14.9264L14.3901 17.7843L14.4742 17.8204C15.2496 18.1607 16.0341 17.971 16.4488 17.6367C16.8666 17.2994 17.0289 16.8688 17.0289 16.8688L17.0559 16.7995L19.9292 2.05247C20.0103 1.68809 20.0313 1.34779 19.9412 1.01654C19.851 0.685276 19.6196 0.375096 19.3401 0.209467C19.0576 0.0408253 18.7781 -0.0103691 18.5196 0.00167666ZM18.4414 1.58269C18.4384 1.63087 18.4475 1.62485 18.4264 1.7182V1.72724L15.5802 16.3207C15.5682 16.3418 15.5472 16.387 15.4901 16.4321C15.43 16.4803 15.3819 16.5104 15.1324 16.4111L10.5851 12.9178L7.83811 15.4263L8.41516 11.7343C8.41516 11.7343 15.5382 5.08199 15.8447 4.7959C16.1513 4.50982 16.0491 4.44959 16.0491 4.44959C16.0701 4.10026 15.5862 4.3472 15.5862 4.3472L6.21816 10.1623L6.21515 10.1473L1.72497 8.63249V8.62948C1.72196 8.62948 1.71595 8.62647 1.71295 8.62647C1.71595 8.62647 1.73699 8.61743 1.73699 8.61743L1.76104 8.60539L1.78508 8.59635C1.78508 8.59635 5.79439 6.90392 9.86982 5.18438C11.9105 4.32311 13.9663 3.45581 15.5472 2.78727C17.128 2.12174 18.2972 1.63388 18.3633 1.60678C18.4264 1.58269 18.3964 1.58269 18.4414 1.58269Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="icon-dropdown" viewBox="0 0 18 11">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M9 10.4141L0.292889 1.70695C-0.0976351 1.31643 -0.0976348 0.683263 0.292889 0.292738C0.683414 -0.0977858 1.31658 -0.0977862 1.7071 0.292738L9 7.58564L16.2929 0.292738C16.6834 -0.0977862 17.3166 -0.0977858 17.7071 0.292738C18.0976 0.683263 18.0976 1.31643 17.7071 1.70695L9 10.4141Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="icon-logo" viewBox="0 0 182 32">
+    <path d="M7.476 0.879883L13.902 14.0679L20.412 0.879883H27.93L17.304 20.5359V30.6999H10.458V20.4519L0 0.879883H7.476Z" fill="currentColor"/>
+    <path d="M36.8041 31.1199C34.2841 31.1199 32.1421 30.5879 30.3781 29.5239C28.6421 28.4599 27.3121 27.0599 26.3881 25.3239C25.4641 23.5879 25.0021 21.7119 25.0021 19.6959C25.0021 17.6519 25.4641 15.7619 26.3881 14.0259C27.3121 12.2899 28.6561 10.8899 30.4201 9.82588C32.1841 8.76188 34.3121 8.22988 36.8041 8.22988C39.2961 8.22988 41.4241 8.76188 43.1881 9.82588C44.9521 10.8899 46.2961 12.2899 47.2201 14.0259C48.1441 15.7619 48.6061 17.6519 48.6061 19.6959C48.6061 21.7119 48.1441 23.5879 47.2201 25.3239C46.2961 27.0599 44.9521 28.4599 43.1881 29.5239C41.4241 30.5879 39.2961 31.1199 36.8041 31.1199ZM31.8901 19.6959C31.8901 21.4039 32.3521 22.7899 33.2761 23.8539C34.2281 24.9179 35.4041 25.4499 36.8041 25.4499C38.1761 25.4499 39.3241 24.9179 40.2481 23.8539C41.2001 22.7899 41.6761 21.4039 41.6761 19.6959C41.6761 17.9879 41.2001 16.6019 40.2481 15.5379C39.3241 14.4739 38.1761 13.9419 36.8041 13.9419C35.4041 13.9419 34.2281 14.4739 33.2761 15.5379C32.3521 16.6019 31.8901 17.9879 31.8901 19.6959Z" fill="currentColor"/>
+    <path d="M51.7289 22.7619V8.64988H58.4489V21.2919C58.4489 24.0639 59.4709 25.4499 61.5149 25.4499C62.4109 25.4499 63.2789 25.2119 64.1189 24.7359C64.9589 24.2319 65.7009 23.4059 66.3449 22.2579V8.64988H73.0649V23.2239C73.0649 23.8959 73.1629 24.3719 73.3589 24.6519C73.5829 24.9319 73.9609 25.0859 74.4929 25.1139V30.6999C73.8489 30.8119 73.3029 30.8959 72.8549 30.9519C72.4069 31.0079 72.0009 31.0359 71.6369 31.0359C69.2289 31.0359 67.8569 30.0979 67.5209 28.2219L67.3949 26.8779C66.3869 28.3339 65.1269 29.4119 63.6149 30.1119C62.1309 30.7839 60.4649 31.1199 58.6169 31.1199C56.3769 31.1199 54.6689 30.4059 53.4929 28.9779C52.3169 27.5499 51.7289 25.4779 51.7289 22.7619Z" fill="currentColor"/>
+    <path d="M92.2569 14.4039C90.6329 14.4319 89.1629 14.6979 87.8469 15.2019C86.5309 15.7059 85.5789 16.4619 84.9909 17.4699V30.6999H78.2709V8.64988H84.4449V13.1019C85.2009 11.6179 86.1809 10.4559 87.3849 9.61588C88.5889 8.77588 89.8489 8.34188 91.1649 8.31388C91.7249 8.31388 92.0889 8.32788 92.2569 8.35588V14.4039Z" fill="currentColor"/>
+    <path d="M116.92 6.92788H107.848V30.6999H100.96V6.92788H91.8458V0.879883H116.92V6.92788Z" fill="currentColor"/>
+    <path d="M126.382 31.1199C123.862 31.1199 121.72 30.5879 119.956 29.5239C118.22 28.4599 116.89 27.0599 115.966 25.3239C115.042 23.5879 114.58 21.7119 114.58 19.6959C114.58 17.6519 115.042 15.7619 115.966 14.0259C116.89 12.2899 118.234 10.8899 119.998 9.82588C121.762 8.76188 123.89 8.22988 126.382 8.22988C128.874 8.22988 131.002 8.22988 132.766 9.82588C134.53 10.8899 135.874 12.2899 136.798 14.0259C137.722 15.7619 138.184 17.6519 138.184 19.6959C138.184 21.7119 137.722 23.5879 136.798 25.3239C135.874 27.0599 134.53 28.4599 132.766 29.5239C131.002 30.5879 128.874 31.1199 126.382 31.1199ZM121.468 19.6959C121.468 21.4039 121.93 22.7899 122.854 23.8539C123.806 24.9179 124.982 25.4499 126.382 25.4499C127.754 25.4499 128.902 24.9179 129.826 23.8539C130.778 22.7899 131.254 21.4039 131.254 19.6959C131.254 17.9879 130.778 16.6019 129.826 15.5379C128.902 14.4739 127.754 13.9419 126.382 13.9419C124.982 13.9419 123.806 14.4739 122.854 15.5379C121.93 16.6019 121.468 17.9879 121.468 19.6959Z" fill="currentColor"/>
+    <path d="M141.307 22.7619V8.64988H148.027V21.2919C148.027 24.0639 149.049 25.4499 151.093 25.4499C151.989 25.4499 152.857 25.2119 153.697 24.7359C154.537 24.2319 155.279 23.4059 155.923 22.2579V8.64988H162.643V23.2239C162.643 23.8959 162.741 24.3719 162.937 24.6519C163.161 24.9319 163.539 25.0859 164.071 25.1139V30.6999C163.427 30.8119 162.881 30.8959 162.433 30.9519C161.985 31.0079 161.579 31.0359 161.215 31.0359C158.807 31.0359 157.435 30.0979 157.099 28.2219L156.973 26.8779C155.965 28.3339 154.705 29.4119 153.193 30.1119C151.709 30.7839 150.043 31.1199 148.195 31.1199C145.955 31.1199 144.247 30.4059 143.071 28.9779C141.895 27.5499 141.307 25.4779 141.307 22.7619Z" fill="currentColor"/>
+    <path d="M181.835 14.4039C180.211 14.4319 178.741 14.6979 177.425 15.2019C176.109 15.7059 175.157 16.4619 174.569 17.4699V30.6999H167.849V8.64988H174.023V13.1019C174.779 11.6179 175.759 10.4559 176.963 9.61588C178.167 8.77588 179.427 8.34188 180.743 8.31388C181.303 8.31388 181.667 8.32788 181.835 8.35588V14.4039Z" fill="currentColor"/>
+  </symbol>
+</svg>
+
+<!-- Fixed Header for Scroll -->
+<header class="header">
+    <div class="header__container">
+        <a href="#" class="header__logo">
+            <svg>
+                <use href="#icon-logo"></use>
+            </svg>
+        </a>
+
+        <nav class="nav">
+            <ul class="nav__list">
+                <li class="nav__item">
+                    <a href="#tours" class="nav__link">Туры</a>
+                </li>
+                <li class="nav__item">
+                    <a href="#form" class="nav__link">Создать тур</a>
+                </li>
+                <li class="nav__item">
+                    <a href="#reviews" class="nav__link">Отзывы</a>
+                </li>
+                <li class="nav__item">
+                    <a href="#stories" class="nav__link">Истории</a>
+                </li>
+            </ul>
+        </nav>
+
+        <a href="tel:+79999999999" class="header__phone">+7 999 999 99 99</a>
+
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero" id="home">
+    <div class="hero__container">
+        <h1 class="hero__title">Идеальные<br>путешествия<br>существуют</h1>
+        <p class="hero__subtitle">Идейные соображения высшего порядка, а также рамки и место обучения кадров</p>
+        <a href="#tours" class="btn">Найти тур</a>
+    </div>
+</section>
+
+<!-- Tours Section -->
+<section class="tours" id="tours">
+    <div class="tours__container">
+        <h2 class="tours__title">Выбери свой тур</h2>
+
+        <div class="tours__tabs">
+            <a href="#" class="tours__tab tours__tab--active">Популярные</a>
+            <a href="#" class="tours__tab">Авторские</a>
+            <a href="#" class="tours__tab">Походы</a>
+            <a href="#" class="tours__tab">Сплавы</a>
+            <a href="#" class="tours__tab">Велопрогулки</a>
+        </div>
+
+        <div class="tours__grid">
+            <article class="tour-card">
+                <div class="tour-card__content">
+                    <div class="tour-card__info">
+                        <h3 class="tour-card__title">Путешествие в горы</h3>
+                        <p class="tour-card__price">от 80 000 руб</p>
+                    </div>
+                    <a href="#" class="tour-card__link">
+                        Подробнее
+                        <svg width="22" height="16">
+                            <use href="#icon-arrow"></use>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+
+            <article class="tour-card">
+                <div class="tour-card__content">
+                    <div class="tour-card__info">
+                        <h3 class="tour-card__title">Путешествие в горы</h3>
+                        <p class="tour-card__price">от 80 000 руб</p>
+                    </div>
+                    <a href="#" class="tour-card__link">
+                        Подробнее
+                        <svg width="22" height="16">
+                            <use href="#icon-arrow"></use>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+
+            <article class="tour-card">
+                <div class="tour-card__content">
+                    <div class="tour-card__info">
+                        <h3 class="tour-card__title">Путешествие в горы</h3>
+                        <p class="tour-card__price">от 80 000 руб</p>
+                    </div>
+                    <a href="#" class="tour-card__link">
+                        Подробнее
+                        <svg width="22" height="16">
+                            <use href="#icon-arrow"></use>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+
+            <article class="tour-card">
+                <div class="tour-card__content">
+                    <div class="tour-card__info">
+                        <h3 class="tour-card__title">Путешествие в горы</h3>
+                        <p class="tour-card__price">от 80 000 руб</p>
+                    </div>
+                    <a href="#" class="tour-card__link">
+                        Подробнее
+                        <svg width="22" height="16">
+                            <use href="#icon-arrow"></use>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+
+            <article class="tour-card">
+                <div class="tour-card__content">
+                    <div class="tour-card__info">
+                        <h3 class="tour-card__title">Путешествие в горы</h3>
+                        <p class="tour-card__price">от 80 000 руб</p>
+                    </div>
+                    <a href="#" class="tour-card__link">
+                        Подробнее
+                        <svg width="22" height="16">
+                            <use href="#icon-arrow"></use>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+
+            <article class="tour-card">
+                <div class="tour-card__content">
+                    <div class="tour-card__info">
+                        <h3 class="tour-card__title">Путешествие в горы</h3>
+                        <p class="tour-card__price">от 80 000 руб</p>
+                    </div>
+                    <a href="#" class="tour-card__link">
+                        Подробнее
+                        <svg width="22" height="16">
+                            <use href="#icon-arrow"></use>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- Form Section -->
+<section class="form-section" id="form">
+    <div class="form-section__container">
+        <h2 class="form-section__title">Собери свой тур</h2>
+        <p class="form-section__subtitle">Идейные соображения высшего порядка,<br>а также рамки и место обучения кадров</p>
+
+        <form class="form">
+            <div class="form__group">
+                <label for="name" class="form__label">Имя</label>
+                <input type="text" id="name" name="name" class="form__input" placeholder="Введите Ваше имя" required>
+            </div>
+
+            <div class="form__group">
+                <label for="direction" class="form__label">Направление</label>
+                <select id="direction" name="direction" class="form__select" required>
+                    <option value="">Куда хотите ехать</option>
+                    <option value="mountains">Горы</option>
+                    <option value="sea">Море</option>
+                    <option value="forest">Лес</option>
+                    <option value="city">Город</option>
+                </select>
+            </div>
+
+            <div class="form__group">
+                <label for="email" class="form__label">Email</label>
+                <input type="email" id="email" name="email" class="form__input" placeholder="example@mail.com" required>
+            </div>
+
+            <div class="form__group">
+                <label for="phone" class="form__label">Телефон</label>
+                <input type="tel" id="phone" name="phone" class="form__input" placeholder="+ 7 ( _ _ _ ) _ _ _ - _ _ - _ _" required>
+            </div>
+
+            <div class="form__group">
+                <label for="date-from" class="form__label">Дата от</label>
+                <input type="date" id="date-from" name="date-from" class="form__input" placeholder="ДД.ММ.ГГ" required>
+            </div>
+
+            <div class="form__group">
+                <label for="date-to" class="form__label">Дата до</label>
+                <input type="date" id="date-to" name="date-to" class="form__input" placeholder="ДД.ММ.ГГ" required>
+            </div>
+
+            <div class="form__group form__group--full">
+                <label for="comment" class="form__label">Комментарий</label>
+                <div id="comment" class="form__textarea" contenteditable="true"></div>
+            </div>
+
+            <div class="form__group form__group--full">
+                <div class="form__checkbox-group">
+                    <label class="form__checkbox-label">Вам есть 18 лет?</label>
+                    <div class="form__radio-group">
+                        <label class="form__radio-label">
+                            <input type="radio" name="age" value="yes" class="form__radio" required>
+                            <span class="form__radio-custom"></span>
+                            <span class="form__radio-text">Да</span>
+                        </label>
+                        <label class="form__radio-label">
+                            <input type="radio" name="age" value="no" class="form__radio" required>
+                            <span class="form__radio-custom"></span>
+                            <span class="form__radio-text">Нет</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form__group form__group--full">
+                <label class="form__checkbox-label form__agreement">
+                    <input type="checkbox" name="agreement" class="form__checkbox" required>
+                    <span class="form__checkbox-custom"></span>
+                    <span class="form__checkbox-text">Нажимая кнопку, я принимаю условия <span class="agreement-link">Лицензионного договора</span></span>
+                </label>
+            </div>
+
+            <div class="form__buttons">
+                <button type="submit" class="form__submit">Найти тур</button>
+                <button type="reset" class="form__reset">Сбросить</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<!-- Reviews Section -->
+<section class="reviews" id="reviews">
+    <div class="reviews__container">
+        <h2 class="reviews__title h2">Отзывы наших<br>путешественников</h2>
+        <p class="reviews__subtitle p-normal">Идейные соображения высшего порядка,<br>а также рамки и место обучения кадров</p>
+
+        <div class="reviews__grid">
+            <article class="review-card">
+                <p class="review-card__text p-big">
+                    Идейные соображения высшего порядка, а также рамки и место обучения кадров обеспечивает широкому кругу (специалистов) участие в формировании новых предложений. Идейные соображения высшего порядка, а также начало повседневной работы по формированию позиции позволяет оценить значение модели развития.
+                </p>
+                <div class="review-card__author">
+                    <div class="review-card__avatar">
+                        <img src="images/reviews/reviewPhoto1.webp" alt="Мария" class="review-card__photo">
+                    </div>
+                    <div class="review-card__info">
+                        <h4 class="h3">Мария</h4>
+                        <p class="p-small">Тур: Вдали от дома</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="review-card">
+                <p class="review-card__text p-big">
+                    Равным образом постоянный количественный рост и сфера нашей активности играет важную роль в формировании системы обучения кадров, соответствует насущным потребностям. <br><br>Значимость этих проблем настолько очевидна, что дальнейшее развитие различных форм деятельности обеспечивает широкому кругу (специалистов) участие в формировании новых предложений. Повседневная практика показывает, что реализация намеченных плановых заданий в значительной степени обуславливает создание модели развития.
+                </p>
+                <div class="review-card__author">
+                    <div class="review-card__avatar">
+                        <img src="images/reviews/reviewPhoto2.webp" alt="Павел" class="review-card__photo">
+                    </div>
+                    <div class="review-card__info">
+                        <h4 class="h3">Павел</h4>
+                        <p class="p-small">Тур: Путешествие в горы</p>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery Section -->
+<section class="gallery" id="gallery">
+    <div class="gallery__container">
+        <h2 class="gallery__title h2">Фотографии путешествий</h2>
+        <p class="gallery__subtitle p-normal">Идейные соображения высшего порядка,<br>а также рамки и место обучения кадров</p>
+
+        <div class="gallery__grid">
+            <div class="gallery__row">
+                <div class="gallery__item">
+                    <img src="images/travels/travelPhoto1.webp" alt="Фото путешествия 1">
+                </div>
+                <div class="gallery__item">
+                    <img src="images/travels/travelPhoto2.webp" alt="Фото путешествия 2">
+                </div>
+                <div class="gallery__item">
+                    <img src="images/travels/travelPhoto3.webp" alt="Фото путешествия 3">
+                </div>
+                <div class="gallery__item">
+                    <img src="images/travels/travelPhoto4.webp" alt="Фото путешествия 4">
+                </div>
+            </div>
+            
+            <div class="gallery__row">
+                <div class="gallery__item">
+                    <img src="images/travels/travelPhoto5.webp" alt="Фото путешествия 5">
+                </div>
+                <div class="gallery__item">
+                    <img src="images/travels/travelPhoto6.webp" alt="Фото путешествия 6">
+                </div>
+                <div class="gallery__item">
+                    <img src="images/travels/travelPhoto7.webp" alt="Фото путешествия 7">
+                </div>
+                <div class="gallery__item">
+                    <img src="images/travels/travelPhoto8.webp" alt="Фото путешествия 8">
+                </div>
+                <div class="gallery__item">
+                    <img src="images/travels/travelPhoto9.webp" alt="Фото путешествия 9">
+                </div>
+            </div>
+            
+            <div class="gallery__row">
+                <div class="gallery__item">
+                    <img src="images/travels/travelPhoto10.webp" alt="Фото путешествия 10">
+                </div>
+                <div class="gallery__item">
+                    <img src="images/travels/travelPhoto11.webp" alt="Фото путешествия 11">
+                </div>
+                <div class="gallery__item">
+                    <img src="images/travels/travelPhoto12.webp" alt="Фото путешествия 12">
+                </div>
+                <div class="gallery__item">
+                    <img src="images/travels/travelPhoto13.webp" alt="Фото путешествия 13">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stories Section -->
+<section class="stories" id="stories">
+    <div class="stories__container">
+        <h2 class="stories__title">Истории путешествий</h2>
+        <p class="stories__subtitle">Идейные соображения высшего порядка,<br>а также рамки и место обучения кадров</p>
+
+        <div class="stories__grid">
+            <article class="story-card story-card--1">
+                <div class="story-card__content">
+                    <div class="story-card__top">
+                        <h3 class="story-card__title">Автостопом в Стамбул</h3>
+                        <p class="story-card__text">
+                            Идейные соображения высшего порядка, а также рамки и место обучения кадров обеспечивает широкому кругу (специалистов) участие в формировании новых предложений:
+                        </p>
+                        <ul class="story-card__list">
+                            <li>вкусная еда</li>
+                            <li>дешевый транспорт</li>
+                            <li>красивый город.</li>
+                        </ul>
+                    </div>
+                    <div class="story-card__bottom">
+                        <a href="#" class="tour-card__link">
+                            Подробнее
+                            <svg width="26" height="24">
+                                <use href="#icon-arrow"></use>
+                            </svg>
+                        </a>
+                        <div class="story-card__socials">
+                            <a href="#" class="social-link">telegram</a>
+                            <a href="#" class="social-link">facebook</a>
+                            <a href="#" class="social-link">YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="story-card story-card--2">
+                <div class="story-card__content">
+                    <div class="story-card__top">
+                        <h3 class="story-card__title">Автостопом в Стамбул</h3>
+                        <p class="story-card__text">
+                            Идейные соображения высшего порядка, а также рамки и место обучения кадров обеспечивает широкому кругу (специалистов) участие в формировании новых предложений:
+                        </p>
+                    </div>
+                    <div class="story-card__bottom">
+                        <a href="#" class="tour-card__link">
+                            Подробнее
+                            <svg width="26" height="24">
+                                <use href="#icon-arrow"></use>
+                            </svg>
+                        </a>
+                        <div class="story-card__socials">
+                            <a href="#" class="social-link">telegram</a>
+                            <a href="#" class="social-link">facebook</a>
+                            <a href="#" class="social-link">ВКонтакте</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="story-card story-card--3">
+                <div class="story-card__content">
+                    <div class="story-card__top">
+                        <h3 class="story-card__title">Автостопом в Стамбул</h3>
+                        <p class="story-card__text">
+                            Идейные соображения высшего порядка, а также рамки и место обучения кадров обеспечивает широкому кругу (специалистов) участие в формировании новых предложений:
+                        </p>
+                    </div>
+                    <div class="story-card__bottom">
+                        <a href="#" class="tour-card__link">
+                            Подробнее
+                            <svg width="26" height="24">
+                                <use href="#icon-arrow"></use>
+                            </svg>
+                        </a>
+                        <div class="story-card__socials">
+                            <a href="#" class="social-link">telegram</a>
+                            <a href="#" class="social-link">facebook</a>
+                            <a href="#" class="social-link">ВКонтакте</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer" id="footer">
+    <div class="footer__container">
+        <div class="footer__card">
+            <div class="footer__card-image"></div>
+            <div class="footer__card-content">
+                <h3 class="footer__card-title">Пора в путешествие<br>вместе с нами!</h3>
+                <p class="footer__card-text">Напиши на почту и узнай подробности на <a href="mailto:yourtour@gmail.com" class="footer__card-email">yourtour@gmail.com</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Footer Social Networks -->
+<section class="footer-socials">
+    <div class="footer-socials__container">
+        <h4 class="footer-socials__title">Наши социальные сети</h4>
+        <div class="footer-socials__links">
+            <a href="#" class="footer-socials__link">
+                <svg class="footer-socials__icon">
+                    <use href="#icon-telegram"></use>
+                </svg>
+                <span>telegram</span>
+            </a>
+            <a href="#" class="footer-socials__link">
+                <svg class="footer-socials__icon">
+                    <use href="#icon-facebook"></use>
+                </svg>
+                <span>facebook</span>
+            </a>
+            <a href="#" class="footer-socials__link">
+                <svg class="footer-socials__icon">
+                    <use href="#icon-vk"></use>
+                </svg>
+                <span>vkontakte</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- JavaScript -->
+<script src="script.js"></script>
+</body>
+</html>

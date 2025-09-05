@@ -1,0 +1,126 @@
+@use 'variables' as *;
+
+// Typography Mixins
+@mixin typography($size, $weight, $line-height, $letter-spacing: $letter-spacing-normal) {
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $line-height;
+  letter-spacing: $letter-spacing;
+}
+
+// Predefined Typography Styles
+@mixin h1-desktop {
+  @include typography($font-size-h1, $font-weight-bold, $line-height-h1, $letter-spacing-h1);
+}
+
+@mixin h1-mobile {
+  @include typography($font-size-h1-mobile, $font-weight-bold, $line-height-h1m, $letter-spacing-h1m);
+}
+
+@mixin h2-desktop {
+  @include typography($font-size-h2, $font-weight-bold, $line-height-h2, $letter-spacing-h2);
+}
+
+@mixin h2-mobile {
+  @include typography($font-size-h2-mobile, $font-weight-bold, $line-height-h2m, $letter-spacing-h2m);
+}
+
+@mixin h3-desktop {
+  @include typography($font-size-h3, $font-weight-medium, $line-height-h3, $letter-spacing-h3);
+}
+
+@mixin h3-mobile {
+  @include typography($font-size-h3-mobile, $font-weight-bold, $line-height-h3m, $letter-spacing-h3m);
+}
+
+@mixin p-big-desktop {
+  @include typography($font-size-p-big, $font-weight-bold, $line-height-p-big, $letter-spacing-p-big);
+}
+
+@mixin p-big-mobile {
+  @include typography($font-size-p-big-mobile, $font-weight-bold, $line-height-p-big-mobile, $letter-spacing-p-big-mobile);
+}
+
+@mixin p-normal-desktop {
+  @include typography($font-size-p-normal, $font-weight-normal, $line-height-p, $letter-spacing-p-normal);
+}
+
+@mixin p-normal-mobile {
+  @include typography($font-size-p-normal-mobile, $font-weight-normal, $line-height-p, $letter-spacing-p-normal-mobile);
+}
+
+@mixin p-small-desktop {
+  @include typography($font-size-p-small, $font-weight-normal, $line-height-p, $letter-spacing-p-small);
+}
+
+@mixin p-small-mobile {
+  @include typography($font-size-p-small-mobile, $font-weight-normal, $line-height-p, $letter-spacing-p-small-mobile);
+}
+
+// Responsive Typography Mixins
+@mixin responsive-h1 {
+  @include h1-desktop;
+  
+  @media (max-width: 768px) {
+    @include h1-mobile;
+  }
+}
+
+@mixin responsive-h2 {
+  @include h2-desktop;
+  
+  @media (max-width: 768px) {
+    @include h2-mobile;
+  }
+}
+
+@mixin responsive-h3 {
+  @include h3-desktop;
+  
+  @media (max-width: 768px) {
+    @include h3-mobile;
+  }
+}
+
+@mixin responsive-p-big {
+  @include p-big-desktop;
+  
+  @media (max-width: 360px) {
+    @include p-big-mobile;
+  }
+}
+
+@mixin responsive-p-normal {
+  @include p-normal-desktop;
+  
+  @media (max-width: 360px) {
+    @include p-normal-mobile;
+  }
+}
+
+@mixin responsive-p-small {
+  @include p-small-desktop;
+  
+  @media (max-width: 360px) {
+    @include p-small-mobile;
+  }
+}
+
+// Other Mixins
+@mixin transition($property: all, $duration: 0.3s, $timing: ease) {
+  transition: $property $duration $timing;
+}
+
+@mixin section-padding {
+  max-width: 1170px;
+  margin-top: 135px;
+  margin-left: auto;
+  margin-right: auto;
+  @media (max-width: 1024px) {
+    max-width: 918px;
+  }
+  @media (max-width: 360px) {
+    margin-top: 75px;
+    max-width: 318px;
+  }
+}

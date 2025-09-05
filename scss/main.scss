@@ -1,0 +1,7 @@
+// Import variables and mixins first
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// Import partials
+@use 'base';
+@use 'layout';

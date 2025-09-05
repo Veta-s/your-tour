@@ -1,0 +1,24 @@
+{
+  "name": "yourtour",
+  "version": "1.0.0",
+  "description": "Tourist website project",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "sass src/scss/main.scss styles.css --style compressed",
+    "watch:css": "sass src/scss/main.scss styles.css --watch --style expanded",
+    "postcss": "postcss styles.css -o styles.css",
+    "build": "pnpm run build:css && pnpm run postcss",
+    "dev": "pnpm run watch:css",
+    "start": "pnpm run dev"
+  },
+  "keywords": ["tourism", "travel", "website"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "sass": "^1.69.5",
+    "postcss": "^8.4.32",
+    "postcss-cli": "^11.0.0",
+    "autoprefixer": "^10.4.16",
+    "cssnano": "^6.0.1"
+  }
+}
