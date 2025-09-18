@@ -4,8 +4,8 @@
   "description": "Tourist website project",
   "main": "index.js",
   "scripts": {
-    "build:css": "sass src/scss/main.scss styles.css --style compressed",
-    "watch:css": "sass src/scss/main.scss styles.css --watch --style expanded",
+    "build:css": "sass scss/main.scss styles.css --style compressed",
+    "watch:css": "sass scss/main.scss styles.css --watch --style expanded",
     "postcss": "postcss styles.css -o styles.css",
     "build": "pnpm run build:css && pnpm run postcss",
     "dev": "pnpm run watch:css",

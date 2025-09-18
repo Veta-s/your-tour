@@ -50,7 +50,7 @@
 <!-- Fixed Header for Scroll -->
 <header class="header">
     <div class="header__container">
-        <a href="#" class="header__logo">
+        <a href="#home" class="header__logo">
             <svg>
                 <use href="#icon-logo"></use>
             </svg>
@@ -229,12 +229,12 @@
 
             <div class="form__group">
                 <label for="date-from" class="form__label">Дата от</label>
-                <input type="date" id="date-from" name="date-from" class="form__input" placeholder="ДД.ММ.ГГ" required>
+                <input type="text" id="date-from" name="date-from" class="form__input" placeholder="ДД.ММ.ГГГГ" maxlength="10" required>
             </div>
-
+            
             <div class="form__group">
                 <label for="date-to" class="form__label">Дата до</label>
-                <input type="date" id="date-to" name="date-to" class="form__input" placeholder="ДД.ММ.ГГ" required>
+                <input type="text" id="date-to" name="date-to" class="form__input" placeholder="ДД.ММ.ГГГГ" maxlength="10" required>
             </div>
 
             <div class="form__group form__group--full">
@@ -269,7 +269,7 @@
             </div>
 
             <div class="form__buttons">
-                <button type="submit" class="form__submit">Найти тур</button>
+                <a href="#tours" class="form__submit">Найти тур</a>
                 <button type="reset" class="form__reset">Сбросить</button>
             </div>
         </form>

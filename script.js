@@ -83,66 +83,264 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Валидация дат (нельзя выбрать прошедшее время)
+
+    // ДАТЫ
+    // Валидация дат в формате DD-MM-YYYY
     const dateFromInput = document.querySelector('#date-from');
     const dateToInput = document.querySelector('#date-to');
 
     if (dateFromInput && dateToInput) {
-        // Устанавливаем минимальную дату как сегодня
-        const today = new Date().toISOString().split('T')[0];
-        dateFromInput.min = today;
-        dateToInput.min = today;
+    
+    // Функция для проверки дат между собой
+    function validateDateRange() {
+        const fromValue = dateFromInput.value;
+        const toValue = dateToInput.value;
+        
+        if (fromValue && toValue && fromValue.length === 10 && toValue.length === 10) {
+            const [fromDay, fromMonth, fromYear] = fromValue.split('.').map(num => parseInt(num));
+            const [toDay, toMonth, toYear] = toValue.split('.').map(num => parseInt(num));
+            
+            const fromDate = new Date(fromYear, fromMonth - 1, fromDay);
+            const toDate = new Date(toYear, toMonth - 1, toDay);
+            
+            if (toDate < fromDate) {
+                dateToInput.style.borderColor = '#ff4444';
+                dateToInput.style.boxShadow = '0 0 0 2px rgba(255, 68, 68, 0.2)';
+                dateToInput.title = 'Дата окончания не может быть раньше даты начала';
+                return false;
+            } else {
+                // Убираем подсветку и подсказку если дата корректна
+                if (dateToInput.title === 'Дата окончания не может быть раньше даты начала') {
+                    dateToInput.style.borderColor = '';
+                    dateToInput.style.boxShadow = '';
+                    dateToInput.title = '';
+                }
+                return true;
+            }
+        }
+        return true;
+    }
+    
+    // Функция для создания маски DD-MM-YYYY
+    function createDateMask(input) {
+        input.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, ''); // Убираем все кроме цифр
+            let formattedValue = '';
+            
+            // Ограничиваем максимальную длину (8 цифр: DDMMYYYY)
+            if (value.length > 8) {
+                value = value.substring(0, 8);
+            }
+            
+            // Форматируем по маске DD.MM.YYYY
+            for (let i = 0; i < value.length; i++) {
+                if (i === 2 || i === 4) {
+                    formattedValue += '.';
+                }
+                formattedValue += value[i];
+            }
+            
+            e.target.value = formattedValue;
+        });
+        
+        // Валидация при вводе
+        input.addEventListener('input', function(e) {
+            const value = e.target.value;
+            if (value && value.length === 10) {
+                const [day, month, year] = value.split('.').map(num => parseInt(num));
+                
+                if (day && month && year) {
+                    let hasError = false;
+                    let errorMessage = '';
+                    
+                    // Валидация года
+                    const currentYear = new Date().getFullYear();
+                    if (year < currentYear || year > 2100) {
+                        hasError = true;
+                        errorMessage = 'Год должен быть от ' + currentYear + ' до 2100';
+                    }
+                    
+                    // Валидация месяца
+                    if (month < 1 || month > 12) {
+                        hasError = true;
+                        errorMessage = 'Месяц должен быть от 01 до 12';
+                    }
+                    
+                    // Валидация дня
+                    if (day < 1 || day > 31) {
+                        hasError = true;
+                        errorMessage = 'День должен быть от 01 до 31';
+                    }
+                    
+                    // Проверяем, что дата не в прошлом
+                    const inputDate = new Date(year, month - 1, day);
+                    const today = new Date();
+                    today.setHours(0, 0, 0, 0);
+                    
+                    if (inputDate < today) {
+                        hasError = true;
+                        errorMessage = 'Дата не может быть в прошлом';
+                    }
+                    
+                    // Подсвечиваем ошибку или убираем подсветку
+                    if (hasError) {
+                        e.target.style.borderColor = '#ff4444';
+                        e.target.style.boxShadow = '0 0 0 2px rgba(255, 68, 68, 0.2)';
+                        e.target.title = errorMessage;
+                    } else {
+                        e.target.style.borderColor = '';
+                        e.target.style.boxShadow = '';
+                        e.target.title = '';
+                    }
+                }
+            }
+            
+            // Проверяем диапазон дат
+            validateDateRange();
+        });
+
+        // Валидация при потере фокуса
+        input.addEventListener('blur', function(e) {
+            const value = e.target.value;
+            if (value && value.length === 10) {
+                const [day, month, year] = value.split('.').map(num => parseInt(num));
+                
+                // Проверяем корректность даты
+                let isValid = true;
+                let correctedDay = day;
+                let correctedMonth = month;
+                let correctedYear = year;
+                
+                // Проверяем корректность даты
+                let hasError = false;
+                let errorMessage = '';
+                
+                // Валидация года
+                const currentYear = new Date().getFullYear();
+                if (year < currentYear || year > 2100) {
+                    hasError = true;
+                    errorMessage = 'Год должен быть от ' + currentYear + ' до 2100';
+                }
+                
+                // Валидация месяца
+                if (month < 1 || month > 12) {
+                    hasError = true;
+                    errorMessage = 'Месяц должен быть от 01 до 12';
+                }
+                
+                // Валидация дня
+                if (day < 1 || day > 31) {
+                    hasError = true;
+                    errorMessage = 'День должен быть от 01 до 31';
+                }
+                
+                // Проверяем, что дата не в прошлом
+                const inputDate = new Date(year, month - 1, day);
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                
+                if (inputDate < today) {
+                    hasError = true;
+                    errorMessage = 'Дата не может быть в прошлом';
+                }
+                
+                // Подсвечиваем ошибку или убираем подсветку
+                if (hasError) {
+                    e.target.style.borderColor = '#ff4444';
+                    e.target.style.boxShadow = '0 0 0 2px rgba(255, 68, 68, 0.2)';
+                    e.target.title = errorMessage;
+                } else {
+                    e.target.style.borderColor = '';
+                    e.target.style.boxShadow = '';
+                    e.target.title = '';
+                }
+            }
+            
+            // Проверяем диапазон дат
+            validateDateRange();
+        });
+        
+        // Разрешаем только цифры и точки
+        input.addEventListener('keydown', function(e) {
+            const allowedKeys = ['Backspace', 'Delete', 'Tab', 'ArrowLeft', 'ArrowRight'];
+            const isNumber = e.key >= '0' && e.key <= '9';
+            const isDot = e.key === '.';
+            
+            if (!allowedKeys.includes(e.key) && !isNumber && !isDot && !e.ctrlKey) {
+                e.preventDefault();
+            }
+        });
+    }
+    
+    // Функция для конвертации Date в формат DD.MM.YYYY
+    function formatDateToDDMMYYYY(date) {
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = date.getFullYear();
+        return `${day}.${month}.${year}`;
+    }
+    
+    // Функция для конвертации DD.MM.YYYY в объект Date
+    function parseDDMMYYYY(dateString) {
+        if (!dateString || dateString.length !== 10) return null;
+        const [day, month, year] = dateString.split('.').map(num => parseInt(num));
+        return new Date(year, month - 1, day);
+    }
 
         // Функция для изменения цвета поля даты
         function updateDateFieldColor(input) {
-            if (input.value) {
+        if (input.value && input.value.length === 10) {
                 input.style.color = '#1B1F2B'; // $black
             } else {
                 input.style.color = '#A6A6A6'; // $gray-300
             }
         }
+    
+    // Применяем маски к полям
+    createDateMask(dateFromInput);
+    createDateMask(dateToInput);
+    
+    // Устанавливаем сегодняшнюю дату как минимальную
+    const today = new Date();
+    const todayFormatted = formatDateToDDMMYYYY(today);
 
         // Применяем цвета при загрузке
         updateDateFieldColor(dateFromInput);
         updateDateFieldColor(dateToInput);
 
-        // При изменении даты "от" обновляем минимальную дату "до" и цвет
+    // При изменении даты "от" обновляем минимальную дату "до"
         dateFromInput.addEventListener('change', function() {
-            dateToInput.min = this.value;
-            if (dateToInput.value && dateToInput.value < this.value) {
-                dateToInput.value = this.value;
-            }
-            updateDateFieldColor(this);
+        updateDateFieldColor(this);
+        
+        const fromDate = parseDDMMYYYY(this.value);
+        const toDate = parseDDMMYYYY(dateToInput.value);
+        
+        // Проверяем диапазон дат, но не меняем значения
+        validateDateRange();
         });
 
-        // При изменении даты "до" проверяем, что она не меньше даты "от" и обновляем цвет
+    // При изменении даты "до" проверяем, что она не меньше даты "от"
         dateToInput.addEventListener('change', function() {
-            if (this.value < dateFromInput.value) {
-                this.value = dateFromInput.value;
-            }
-            updateDateFieldColor(this);
+        updateDateFieldColor(this);
+        
+        const fromDate = parseDDMMYYYY(dateFromInput.value);
+        const toDate = parseDDMMYYYY(this.value);
+        
+        // Проверяем диапазон дат, но не меняем значения
+        validateDateRange();
         });
 
-        // При фокусе на поле даты
-        dateFromInput.addEventListener('focus', function() {
+    // При фокусе и потере фокуса обновляем цвета
+    [dateFromInput, dateToInput].forEach(input => {
+        input.addEventListener('focus', function() {
             if (!this.value) {
-                this.style.color = '#1B1F2B'; // $black при фокусе
+                this.style.color = '#1B1F2B';
             }
         });
-
-        dateToInput.addEventListener('focus', function() {
-            if (!this.value) {
-                this.style.color = '#1B1F2B'; // $black при фокусе
-            }
-        });
-
-        // При потере фокуса возвращаем исходный цвет
-        dateFromInput.addEventListener('blur', function() {
+        
+        input.addEventListener('blur', function() {
             updateDateFieldColor(this);
         });
-
-        dateToInput.addEventListener('blur', function() {
-            updateDateFieldColor(this);
         });
     }
 
