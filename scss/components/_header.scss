@@ -11,6 +11,7 @@
     height: 88px;
     transition: all 0.3s ease;
     display: flex;
+
     
     &.header--blurred {
     position: fixed;
@@ -42,11 +43,23 @@
     display: inline-flex;
     align-items: center;
     justify-content: space-between;
+    @media (max-width: 1440px) {
+        padding-left: 32px;
+        padding-right: 32px;
+    }
     @media (max-width: 1024px) {
         width: 910px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    @media (max-width: 950px) {
+        padding-left: 18px;
+        padding-right: 18px;
     }
     @media (max-width: 360px) {
         width: 320px;
+        padding-left: 0;
+        padding-right: 0;
     }
 }
 
@@ -74,7 +87,7 @@
     @media (max-width: 1024px) {
         gap: 30px;
     }
-    @media (max-width: 768px) {
+    @media (max-width: 860px) {
         display: none;
     }
 

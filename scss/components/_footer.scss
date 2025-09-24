@@ -20,7 +20,7 @@
     
     &__card {
         display: flex;
-        @media (max-width: 360px) {
+        @media (max-width: 768px) {
             flex-direction: column;
             align-items: center;
         }
@@ -51,7 +51,7 @@
         @media (max-width: 1024px) {
             width: 100%;
         }
-        @media (max-width: 360px) {
+        @media (max-width: 768px) {
             padding-left: 0;
             align-items: center;
             text-align: center;
@@ -98,11 +98,27 @@
     align-items: center;
     justify-content: center;
     margin-top: 135px;
+    @media (max-width: 1440px) {
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+    @media (max-width: 1024px) {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    @media (max-width: 950px) {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
     @media (max-width: 360px) {
         margin-top: 75px;
         height: 98px;
+        padding-left: 0;
+        padding-right: 0;
     }
     
+    
+
     &__container {
         width: 100%;
         max-width: 1170px;
@@ -165,6 +181,12 @@
             color: $black;
             text-transform: lowercase;
             transition: all 0.3s ease;
+            @media (max-width: 860px) {
+                display: none;
+            }
+            @media (max-width: 360px) {
+                display: block;
+            }
         }
     }
 }
