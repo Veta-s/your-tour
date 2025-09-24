@@ -1,0 +1,81 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+/* Hero Section */
+.hero {
+    position: relative;
+    max-height: 830px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background: url('/images/backgrounds/header.webp') no-repeat center;
+    @media (max-width: 360px) {
+        max-height: 488px;
+        background-size: cover;
+        background-position: center top;
+    }
+}
+
+.hero__container {
+    text-align: center;
+    margin-top: 88px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 88px);
+}
+
+.hero__title {
+    color: $white;
+    text-align: center;
+    @include responsive-h1;
+}
+
+.hero__subtitle {
+    color: $white;
+    margin: 50px 0;
+    text-align: center;
+    max-width: 562px;
+    margin-left: auto;
+    margin-right: auto;
+    @include responsive-p-normal;
+    @media (max-width: 1024px) {
+        max-width: 400px;
+    }
+    @media (max-width: 360px) {
+        max-width: 310px;
+        margin: 40px 0;
+    }
+}
+
+.btn {
+    @include responsive-p-small;
+    display: inline-flex;
+    padding: 5px 20px;
+    background: $white;
+    color: $black;
+    text-decoration: none;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    @include transition();
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    &:hover {
+        background: $orange-200;
+        color: $white;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(239, 165, 1, 0.3);
+    }
+
+    &:active {
+        transform: translateY(0);
+        box-shadow: 0 4px 15px rgba(239, 165, 1, 0.2);
+    }
+}
+
+
