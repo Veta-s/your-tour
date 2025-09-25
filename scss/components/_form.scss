@@ -47,6 +47,13 @@
         padding: 60px;
         gap: 33px 20px;
     }
+    @media (max-width: 768px) {
+        padding: 40px;
+        gap: 28px 18px;
+        grid-template-columns: 1fr;
+		width: 100%;
+		box-sizing: border-box;
+    }
     @media (max-width: 360px) {
         padding: 20px;
         border-radius: 30px;
@@ -316,6 +323,11 @@
     display: flex;
     gap: 30px;
     justify-content: flex-start;
+	@media (max-width: 768px) and (min-width: 361px) {
+		flex-direction: column;
+		gap: 20px;
+		width: 100%;
+	}
     @media (max-width: 360px) {
         gap: 10px;
         margin-bottom: 20px;
@@ -334,6 +346,9 @@
     align-items: center;
     justify-content: center;
     @include transition();
+	@media (max-width: 768px) and (min-width: 361px) {
+		width: 100%;
+	}
     @media (max-width: 360px) {
         width: 134px;
         height: 47px;

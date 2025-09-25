@@ -68,13 +68,11 @@
     &:hover {
         background: $orange-200;
         color: $white;
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(239, 165, 1, 0.3);
     }
 
     &:active {
         transform: translateY(0);
-        box-shadow: 0 4px 15px rgba(239, 165, 1, 0.2);
+        background: $orange-100;
     }
 }
 

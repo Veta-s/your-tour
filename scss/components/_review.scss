@@ -54,6 +54,9 @@
     @media (max-width: 1024px) {
         min-height: 841px;
     }
+    @media (max-width: 768px) {
+        min-height: auto;
+    }
     @media (max-width: 360px) {
     border-radius: 20px;
         padding: 20px;

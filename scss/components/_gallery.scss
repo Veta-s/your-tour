@@ -112,7 +112,37 @@
             }
         }
 
-        @media (max-width: 360px) {
+        @media (max-width: 768px) {
+            gap: 24px;
+
+            .gallery__row {
+                &:nth-child(1) {
+                    // 1 ряд: 2 фото
+                    .gallery__item {
+                        width: 231px;
+                        height: 200px;
+                    }
+                }
+
+                &:nth-child(2) {
+                    // 2 ряд: 2 фото
+                    .gallery__item {
+                        width: 231px;
+                        height: 200px;
+                    }
+                }
+
+                &:nth-child(3) {
+                    // 3 ряд: 2 фото
+                    .gallery__item {
+                        width: 231px;
+                        height: 200px;
+                    }
+                }
+            }
+        }
+
+        @media (max-width: 440px) {
             gap: 18px;
 
             .gallery__row {
