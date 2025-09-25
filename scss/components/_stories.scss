@@ -111,19 +111,19 @@
         // Фоны для карточек
         &--1 {
             &::after {
-                background-image: url('/images/stories/storyPhoto1.webp');
+                background-image: url('../../images/stories/storyPhoto1.webp');
             }
         }
         
         &--2 {
             &::after {
-                background-image: url('/images/stories/storyPhoto2.webp');
+                background-image: url('../../images/stories/storyPhoto2.webp');
             }
         }
         
         &--3 {
             &::after {
-                background-image: url('/images/stories/storyPhoto3.webp');
+                background-image: url('../../images/stories/storyPhoto3.webp');
             }
         }
         
