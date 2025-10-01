@@ -86,6 +86,15 @@
         border-radius: 20px;
         height: 318px;
     }
+    
+    &__wrapper {
+        display: block;
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
+    }
 
     &:hover {
         z-index: 20;
@@ -176,10 +185,10 @@
     gap: 15px;
     width: fit-content;
     color: $white;
-    text-decoration: none;
     position: relative;
     @include transition();
     @include responsive-p-big;
+    pointer-events: none;
     
     &::after {
         content: '';
@@ -194,16 +203,6 @@
         @include transition();
     }
     
-    &:hover {
-        color: $white;
-        
-        &::after {
-            background: $green-400;
-        }
-        
-        transform: none;
-    }
-    
     // Активация кнопки при hover на карточку
     .tour-card:hover & {
         color: $white;
@@ -213,7 +212,8 @@
         }
     }
     
-    &:active {
+    // Активное состояние при клике на карточку
+    .tour-card__wrapper:active & {
         color: $black;
         
         &::after {

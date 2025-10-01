@@ -50,35 +50,84 @@ document.addEventListener('DOMContentLoaded', function() {
     const phoneInput = document.querySelector('#phone');
 
     if (phoneInput) {
-        phoneInput.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-
-            if (value.length > 0) {
-                if (value.length <= 1) {
-                    value = `+7 (${value}`;
-                } else if (value.length <= 4) {
-                    value = `+7 (${value.slice(1)}`;
-                } else if (value.length <= 7) {
-                    value = `+7 (${value.slice(1, 4)}) ${value.slice(4)}`;
-                } else if (value.length <= 9) {
-                    value = `+7 (${value.slice(1, 4)}) ${value.slice(4, 7)}-${value.slice(7)}`;
-                } else {
-                    value = `+7 (${value.slice(1, 4)}) ${value.slice(4, 7)}-${value.slice(7, 9)}-${value.slice(9, 11)}`;
+        // Функция для форматирования номера телефона
+        function formatPhone(value) {
+            // Убираем все символы кроме цифр
+            const digits = value.replace(/\D/g, '');
+            
+            // Если нет цифр, возвращаем пустую строку
+            if (digits.length === 0) {
+                return '';
+            }
+            
+            // Если есть цифры, но меньше 11, форматируем
+            if (digits.length <= 11) {
+                let formatted = '+7 (';
+                
+                if (digits.length > 1) {
+                    formatted += digits.slice(1, 4);
                 }
+                
+                if (digits.length > 4) {
+                    formatted += ') ' + digits.slice(4, 7);
+                }
+                
+                if (digits.length > 7) {
+                    formatted += '-' + digits.slice(7, 9);
+                }
+                
+                if (digits.length > 9) {
+                    formatted += '-' + digits.slice(9, 11);
+                }
+                
+                return formatted;
+            }
+            
+            // Если больше 11 цифр, обрезаем до 11
+            const limitedDigits = digits.slice(0, 11);
+            return formatPhone(limitedDigits);
+        }
+
+        phoneInput.addEventListener('input', function(e) {
+            // Если пользователь выделил весь текст и удалил его
+            if (e.target.value === '') {
+                e.target.value = '';
+                return;
             }
 
-            e.target.value = value;
+            e.target.value = formatPhone(e.target.value);
         });
 
         phoneInput.addEventListener('focus', function(e) {
-            if (!e.target.value) {
+            // Если поле пустое, добавляем префикс
+            if (!e.target.value || e.target.value === '') {
                 e.target.value = '+7 (';
             }
         });
 
         phoneInput.addEventListener('blur', function(e) {
+            // Если в поле только префикс, очищаем его
             if (e.target.value === '+7 (') {
                 e.target.value = '';
+            }
+        });
+
+        // Обработка клавиш для корректного удаления
+        phoneInput.addEventListener('keydown', function(e) {
+            // Если нажата Backspace и в поле только '+7 (', очищаем поле
+            if (e.key === 'Backspace' && e.target.value === '+7 (') {
+                e.target.value = '';
+                e.preventDefault();
+            }
+            
+            // Если нажата Delete и курсор в начале поля с префиксом
+            if (e.key === 'Delete' && e.target.selectionStart <= 4 && e.target.value.startsWith('+7 (')) {
+                // Если после префикса нет цифр, очищаем поле
+                const digits = e.target.value.replace(/\D/g, '');
+                if (digits.length <= 1) {
+                    e.target.value = '';
+                    e.preventDefault();
+                }
             }
         });
     }
@@ -206,12 +255,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 const [day, month, year] = value.split('.').map(num => parseInt(num));
                 
                 // Проверяем корректность даты
-                let isValid = true;
-                let correctedDay = day;
-                let correctedMonth = month;
-                let correctedYear = year;
-                
-                // Проверяем корректность даты
                 let hasError = false;
                 let errorMessage = '';
                 
@@ -302,7 +345,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Устанавливаем сегодняшнюю дату как минимальную
     const today = new Date();
-    const todayFormatted = formatDateToDDMMYYYY(today);
 
         // Применяем цвета при загрузке
         updateDateFieldColor(dateFromInput);
@@ -312,9 +354,6 @@ document.addEventListener('DOMContentLoaded', function() {
         dateFromInput.addEventListener('change', function() {
         updateDateFieldColor(this);
         
-        const fromDate = parseDDMMYYYY(this.value);
-        const toDate = parseDDMMYYYY(dateToInput.value);
-        
         // Проверяем диапазон дат, но не меняем значения
         validateDateRange();
         });
@@ -322,9 +361,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // При изменении даты "до" проверяем, что она не меньше даты "от"
         dateToInput.addEventListener('change', function() {
         updateDateFieldColor(this);
-        
-        const fromDate = parseDDMMYYYY(dateFromInput.value);
-        const toDate = parseDDMMYYYY(this.value);
         
         // Проверяем диапазон дат, но не меняем значения
         validateDateRange();

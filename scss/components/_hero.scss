@@ -35,11 +35,9 @@
 
 .hero__subtitle {
     color: $white;
-    margin: 50px 0;
     text-align: center;
     max-width: 562px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 50px auto;
     @include responsive-p-normal;
     @media (max-width: 1024px) {
         max-width: 400px;
