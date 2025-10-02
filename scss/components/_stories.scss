@@ -59,6 +59,13 @@
             text-decoration: none;
             color: inherit;
             cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            position: relative;
+            z-index: 1;
+            
+            &:active {
+                outline: none;
+            }
         }
         
         &::before {
@@ -273,7 +280,7 @@
     }
 }
 
-// Стили для кнопки "Подробнее" в карточках историй
+// Стили для кнопки "Подробнее" в карточках историй (аналогично турам)
 .story-card .tour-card__link {
     display: inline-flex;
     align-items: center;
@@ -298,15 +305,6 @@
         @include transition();
     }
     
-    // Активное состояние при клике на карточку
-    .story-card__wrapper:active & {
-        color: $black;
-        
-        &::after {
-            background: $orange-200;
-        }
-    }
-    
     svg {
         width: 26px;
         height: 24px;
@@ -315,5 +313,12 @@
     }
 }
 
+// Активное состояние при клике на карточку истории
+.stories .story-card:active .tour-card__link {
+    
+    &::after {
+        background: $orange-200 !important;
+    }
+}
 
 
