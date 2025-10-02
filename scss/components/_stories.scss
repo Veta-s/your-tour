@@ -317,7 +317,7 @@
 .stories .story-card:active .tour-card__link {
     
     &::after {
-        background: $orange-200 !important;
+        background: $orange-200;
     }
 }
 
