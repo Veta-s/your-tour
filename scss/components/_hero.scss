@@ -4,14 +4,21 @@
 /* Hero Section */
 .hero {
     position: relative;
-    max-height: 830px;
+    width: 100vw;                 // full-bleed width
+    height: 100vh;
+    left: 50%;                    // center the full-bleed block inside centered body
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-image: url('./images/backgrounds/header.webp');
+    background-repeat: no-repeat;
+    background-position: center center;
     background-size: cover;
-    background: url('./images/backgrounds/header.webp') no-repeat center;
     @media (max-width: 360px) {
-        max-height: 488px;
+        min-height: 488px;
         background-size: cover;
         background-position: center top;
     }

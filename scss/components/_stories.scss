@@ -156,9 +156,6 @@
             left: 0;
             right: 0;
             z-index: 2;
-            @media (max-width: 768px) {
-                padding: 40px;
-            }
             @media (max-width: 360px) {
                 padding: 30px;
             }
@@ -211,9 +208,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            @media (max-width: 768px) and (min-width: 361px) {
-                margin-top: 20px;
-            }
             @media (max-width: 360px) {
                 margin-right: auto;
                 flex-direction: column;
@@ -262,11 +256,7 @@
                 @include responsive-p-normal;
                 color: $white;
                 text-decoration: none;
-                transition: all 0.3s ease;
-                @media (max-width: 768px) {
-                    display: none;
-                }
-                
+                transition: all 0.3s ease;                
                 &:hover {
                     text-decoration: underline;
                 }

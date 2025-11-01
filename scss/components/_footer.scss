@@ -91,7 +91,12 @@
 
 /* Footer Social Networks */
 .footer-socials {
-    width: 100%;
+    position: relative;
+    width: 100vw;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
     height: 88px;
     background: $beige-200;
     display: flex;
@@ -105,10 +110,6 @@
     @media (max-width: 1024px) {
         padding-left: 0;
         padding-right: 0;
-    }
-    @media (max-width: 950px) {
-        padding-left: 18px;
-        padding-right: 18px;
     }
     @media (max-width: 360px) {
         margin-top: 75px;
