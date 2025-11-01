@@ -71,11 +71,13 @@
 
 .nav__list {
     @include responsive-p-normal;
-    display: flex;
-    list-style: none;
-    gap: 50px;
-    margin: 0;
-    padding: 0;
+    & {
+        display: flex;
+        list-style: none;
+        gap: 50px;
+        margin: 0;
+        padding: 0;
+    }
     @media (max-width: 1024px) {
         gap: 30px;
     }
@@ -83,9 +85,13 @@
 
 .nav__link {
     @include responsive-p-normal;
-    color: $white;
-    text-decoration: none;
-    @include transition();
+    & {
+        color: $white;
+        text-decoration: none;
+    }
+    & {
+        @include transition();
+    }
     
     &:hover {
         text-decoration: underline;
@@ -95,8 +101,10 @@
 
 .header__phone {
     @include responsive-p-normal;
-    text-decoration: none;
-    color: $white;
+    & {
+        color: $white;
+        text-decoration: none;
+    }
 }
 
 

@@ -41,11 +41,13 @@
 }
 
 .hero__subtitle {
-    color: $white;
-    text-align: center;
-    max-width: 562px;
-    margin: 50px auto;
     @include responsive-p-normal;
+    & {
+        color: $white;
+        text-align: center;
+        max-width: 562px;
+        margin: 50px auto;
+    }
     @media (max-width: 1024px) {
         max-width: 400px;
     }
@@ -57,18 +59,22 @@
 
 .btn {
     @include responsive-p-small;
-    display: inline-flex;
-    padding: 5px 20px;
-    background: $white;
-    color: $black;
-    text-decoration: none;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    @include transition();
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    & {
+        display: inline-flex;
+        padding: 5px 20px;
+        background: $white;
+        color: $black;
+        text-decoration: none;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    & {
+        @include transition();
+    }
 
     &:hover {
         background: $orange-200;

@@ -5,7 +5,9 @@
 .form-section {
     &__container {
         @include section-padding;
-        text-align: center;
+        & {
+            text-align: center;
+        }
         
         @media (max-width: 1024px) {
             max-width: 918px;
@@ -18,9 +20,11 @@
 
     &__title {
         @include responsive-h2;
-        text-align: center;
-        margin-bottom: 30px;
-        color: $black;
+        & {
+            text-align: center;
+            margin-bottom: 30px;
+            color: $black;
+        }
         @media (max-width: 360px) {
             margin-bottom: 20px;
         }
@@ -28,8 +32,10 @@
 
     &__subtitle {
         @include responsive-p-normal;
-        color: $gray-300;
-        margin-bottom: 100px;
+        & {
+            color: $gray-300;
+            margin-bottom: 100px;
+        }
         @media (max-width: 360px) {
             margin-bottom: 40px;
         }
@@ -68,7 +74,9 @@
     flex-direction: column;
     gap: 7px;
     @include responsive-p-normal;
-    color: $black;
+    & {
+        color: $black;
+    }
     
     @media (max-width: 360px) {
         gap: 8px;
@@ -81,22 +89,28 @@
 
 .form__label {
     @include responsive-p-normal;
-    color: $black;
-    text-align: left;
+    & {
+        color: $black;
+        text-align: left;
+    }
 }
 
 .form__input,
 .form__select,
 .form__textarea {
     @include responsive-p-normal;
-    padding: 20px;
-    max-height: 68px;
-    width: 100%;
-    background: $beige-100;
-    border: 1px solid $beige-200;
-    border-radius: 10px;
-    color: $black;
-    @include transition();
+    & {
+        padding: 20px;
+        max-height: 68px;
+        width: 100%;
+        background: $beige-100;
+        border: 1px solid $beige-200;
+        border-radius: 10px;
+        color: $black;
+    }
+    & {
+        @include transition();
+    }
     
     @media (max-width: 360px) {
         padding: 10px;
@@ -168,9 +182,11 @@
     @media (max-width: 360px) {
         min-height: 132px;
     }
-    // Стили для contenteditable
-    outline: none;
-    cursor: text;
+    & {
+        // Стили для contenteditable
+        outline: none;
+        cursor: text;
+    }
 }
 
 // Стили для уведомления о лимите символов
@@ -245,7 +261,9 @@
 
 .form__radio-text {
     @include responsive-p-normal;
-    color: $black;
+    & {
+        color: $black;
+    }
 }
 
 /* Checkboxes */
@@ -306,7 +324,9 @@
 
 .form__checkbox-text {
     @include responsive-p-small;
-    color: $gray-300;
+    & {
+        color: $gray-300;
+    }
     
     .agreement-link {
         color: $black;
@@ -342,15 +362,19 @@
 .form__submit,
 .form__reset {
     @include responsive-p-normal;
-    width: 235px;
-    height: 58px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    @include transition();
+    & {
+        width: 235px;
+        height: 58px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    & {
+        @include transition();
+    }
 	@media (max-width: 768px) and (min-width: 361px) {
 		width: 100%;
 	}

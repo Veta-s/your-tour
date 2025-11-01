@@ -5,14 +5,18 @@
 .stories {
     &__container {
         @include section-padding;
-        overflow: visible;
+        & {
+            overflow: visible;
+        }
     }
     
     &__title {
         @include responsive-h2;
-        text-align: center;
-        margin-bottom: 30px;
-        color: $black;
+        & {
+            text-align: center;
+            margin-bottom: 30px;
+            color: $black;
+        }
         @media (max-width: 360px) {
             margin-bottom: 20px;
         }
@@ -20,11 +24,13 @@
     
     &__subtitle {
         @include responsive-p-normal;
-        color: $gray-300;
-        text-align: center;
-        margin-bottom: 100px;
-        margin-left: auto;
-        margin-right: auto;
+        & {
+            color: $gray-300;
+            text-align: center;
+            margin-bottom: 100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
         @media (max-width: 360px) {
             margin-bottom: 50px;
         }
@@ -163,8 +169,10 @@
         
         &__title {
             @include responsive-h3;
-            color: $white;
-            margin-bottom: 37px;
+            & {
+                color: $white;
+                margin-bottom: 37px;
+            }
             @media (max-width: 360px) {
                 margin-bottom: 20px;
                 max-width: 60%;
@@ -173,9 +181,11 @@
         
         &__text {
             @include responsive-p-normal;
-            color: $white;
-            margin-bottom: 26px;
-            max-width: 55%;
+            & {
+                color: $white;
+                margin-bottom: 26px;
+                max-width: 55%;
+            }
             @media (max-width: 1024px) {
                 max-width: 70%;
             }
@@ -191,9 +201,11 @@
             
             li {
                 @include responsive-p-normal;
-                color: $white;
-                position: relative;
-                padding-left: 13px;
+                & {
+                    color: $white;
+                    position: relative;
+                    padding-left: 13px;
+                }
                 
                 &::before {
                     content: '•';
@@ -216,11 +228,13 @@
         
         &__link {
             @include responsive-p-big;
-            color: $white;
-            text-decoration: none;
-            font-weight: $font-weight-medium;
-            transition: all 0.3s ease;
-            position: relative;
+            & {
+                color: $white;
+                text-decoration: none;
+                font-weight: $font-weight-medium;
+                transition: all 0.3s ease;
+                position: relative;
+            }
             
             &::after {
                 content: '';
@@ -254,9 +268,11 @@
             
             .social-link {
                 @include responsive-p-normal;
-                color: $white;
-                text-decoration: none;
-                transition: all 0.3s ease;                
+                & {
+                    color: $white;
+                    text-decoration: none;
+                    transition: all 0.3s ease;
+                }                
                 &:hover {
                     text-decoration: underline;
                 }
@@ -272,15 +288,17 @@
 
 // Стили для кнопки "Подробнее" в карточках историй (аналогично турам)
 .story-card .tour-card__link {
-    display: inline-flex;
-    align-items: center;
-    gap: 15px;
-    width: fit-content;
-    color: $white;
-    position: relative;
-    @include transition();
     @include responsive-p-big;
-    pointer-events: none;
+    & {
+        display: inline-flex;
+        align-items: center;
+        gap: 15px;
+        width: fit-content;
+        color: $white;
+        position: relative;
+        pointer-events: none;
+        @include transition();
+    }
     
     &::after {
         content: '';

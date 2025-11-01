@@ -5,14 +5,18 @@
 
 .reviews__container {
     @include section-padding;
-    text-align: center;
+    & {
+        text-align: center;
+    }
 }
 
 .reviews__title {
     @include responsive-h2;
-    text-align: center;
-    margin-bottom: 30px;
-    color: $black;
+    & {
+        text-align: center;
+        margin-bottom: 30px;
+        color: $black;
+    }
     @media (max-width: 360px) {
         margin-bottom: 20px;
     }
@@ -20,10 +24,12 @@
 
 .reviews__subtitle {
     @include responsive-p-normal;
-    color: $gray-300;
-    margin-bottom: 100px;
-    margin-left: auto;
-    margin-right: auto;
+    & {
+        color: $gray-300;
+        margin-bottom: 100px;
+        margin-left: auto;
+        margin-right: auto;
+    }
     @media (max-width: 360px) {
         margin-bottom: 50px;
     }
@@ -66,9 +72,11 @@
 
 .review-card__text {
     @include responsive-p-big;
-    color: $black;
-    margin-bottom: 30px;
-    flex: 1;
+    & {
+        color: $black;
+        margin-bottom: 30px;
+        flex: 1;
+    }
     @media (max-width: 360px) {
         margin-bottom: 40px;
         padding-right: 5px;
@@ -112,12 +120,16 @@
 
 .review-card__info h4 {
     @include responsive-h3;
-    color: $black;
-    margin-bottom: 8px;
+    & {
+        color: $black;
+        margin-bottom: 8px;
+    }
 }
 
 .review-card__info p {
     @include responsive-p-small;
-    color: $gray-300;
-    margin: 0;
+    & {
+        color: $gray-300;
+        margin: 0;
+    }
 }

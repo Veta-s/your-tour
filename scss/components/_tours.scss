@@ -7,14 +7,18 @@
 
     &__container {
         @include section-padding;
-        overflow: visible;
+        & {
+            overflow: visible;
+        }
     }
 
     &__title {
         @include responsive-h2;
-        text-align: center;
-        margin-bottom: 35px;
-        color: $black;
+        & {
+            text-align: center;
+            margin-bottom: 35px;
+            color: $black;
+        }
         @media (max-width: 360px){ 
         margin-bottom: 30px;
         }
@@ -36,10 +40,14 @@
 
     &__tab {
         @include responsive-p-big;
-        color: $black;
-        text-decoration: none;
-        @include transition();
-        position: relative;
+        & {
+            color: $black;
+            text-decoration: none;
+            position: relative;
+        }
+        & {
+            @include transition();
+        }
 
         &--active {
             color: $orange-200;
@@ -160,30 +168,36 @@
 }
 
 .tour-card__title {
-    color: $white;
-    margin-bottom: 16px;
     @include responsive-h3;
-    max-width: 70%;
+    & {
+        color: $white;
+        margin-bottom: 16px;
+        max-width: 70%;
+    }
     @media (max-width: 1024px) {
         max-width: 100%;
     }
 }
 
 .tour-card__price {
-    color: $white;
     @include responsive-p-small;
+    & {
+        color: $white;
+    }
 }
 
 .tour-card__link {
-    display: inline-flex;
-    align-items: center;
-    gap: 15px;
-    width: fit-content;
-    color: $white;
-    position: relative;
-    @include transition();
     @include responsive-p-big;
-    pointer-events: none;
+    & {
+        display: inline-flex;
+        align-items: center;
+        gap: 15px;
+        width: fit-content;
+        color: $white;
+        position: relative;
+        pointer-events: none;
+        @include transition();
+    }
     
     &::after {
         content: '';

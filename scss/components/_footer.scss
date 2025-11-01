@@ -61,8 +61,10 @@
     
     &__card-title {
         @include responsive-h3;
-        color: $black;
-        margin-bottom: 20px;
+        & {
+            color: $black;
+            margin-bottom: 20px;
+        }
         @media (max-width: 360px) {
             margin-top: 32px;
         }
@@ -70,7 +72,9 @@
     
     &__card-text {
         @include responsive-p-normal;
-        color: $gray-300;
+        & {
+            color: $gray-300;
+        }
         
         .footer__card-email {
             color: $black;
@@ -140,7 +144,9 @@
     
     &__title {
         @include responsive-p-normal;
-        color: $gray-300;
+        & {
+            color: $gray-300;
+        }
     }
     
     &__links {
@@ -179,9 +185,11 @@
         
         span {
             @include responsive-p-normal;
-            color: $black;
-            text-transform: lowercase;
-            transition: all 0.3s ease;
+            & {
+                color: $black;
+                text-transform: lowercase;
+                transition: all 0.3s ease;
+            }
             @media (max-width: 860px) {
                 display: none;
             }
