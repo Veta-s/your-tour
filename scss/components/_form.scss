@@ -8,14 +8,14 @@
         & {
             text-align: center;
         }
-        
-        @media (max-width: 1024px) {
-            max-width: 918px;
-        }
-        @media (max-width: 360px) {
-            max-width: 318px;
-        }
-        
+        //
+        //@media (max-width: 1024px) {
+        //    max-width: 918px;
+        //}
+        //@media (max-width: 360px) {
+        //    max-width: 318px;
+        //}
+        //
     }
 
     &__title {
@@ -174,7 +174,9 @@
 
 .form__textarea {
     min-height: 152px;
-    resize: none;
+    //resize: none;
+    min-width: 100%;
+    resize: vertical;
     overflow-y: auto;
     word-wrap: break-word;
     white-space: pre-wrap;
@@ -324,18 +326,29 @@
 
 .form__checkbox-text {
     @include responsive-p-small;
+
     & {
         color: $gray-300;
     }
     
     .agreement-link {
         color: $black;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        
-        &:hover {
-            text-decoration: underline;
-        }
+        //text-decoration: none;
+        //transition: all 0.3s ease;
+        //
+        //&:hover {
+        //    text-decoration: underline;
+        //}
+      position: relative;
+      text-decoration: none;
+
+      &::after {
+        bottom: -2px;
+      }
+
+      &:hover::after {
+        transform: scaleX(1);
+      }
     }
     @media (max-width: 360px) {
         text-align: left;
@@ -348,12 +361,9 @@
     display: flex;
     gap: 30px;
     justify-content: flex-start;
-	@media (max-width: 768px) and (min-width: 361px) {
-		flex-direction: column;
-		gap: 20px;
-		width: 100%;
-	}
-    @media (max-width: 360px) {
+	
+    @media (max-width: 768px) {
+        justify-content: center;
         gap: 10px;
         margin-bottom: 20px;
     }
@@ -375,10 +385,7 @@
     & {
         @include transition();
     }
-	@media (max-width: 768px) and (min-width: 361px) {
-		width: 100%;
-	}
-    @media (max-width: 360px) {
+    @media (max-width: 768px) {
         width: 134px;
         height: 47px;
     }

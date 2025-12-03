@@ -27,8 +27,8 @@
     & {
         color: $gray-300;
         margin-bottom: 100px;
-        margin-left: auto;
-        margin-right: auto;
+        //margin-left: auto;
+        //margin-right: auto;
     }
     @media (max-width: 360px) {
         margin-bottom: 50px;
@@ -61,11 +61,8 @@
         min-height: 841px;
     }
     @media (max-width: 768px) {
-        min-height: auto;
-    }
-    @media (max-width: 360px) {
-    border-radius: 20px;
-        padding: 20px;
+      border-radius: 20px;
+      padding: 20px;
         min-height: auto;
     }
 }

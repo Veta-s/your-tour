@@ -3,6 +3,7 @@
 
 /* Stories Section */
 .stories {
+
     &__container {
         @include section-padding;
         & {
@@ -72,6 +73,11 @@
             &:active {
                 outline: none;
             }
+
+            // Отключаем глобальный ::after из _base.scss
+            &::after {
+                display: none;
+            }
         }
         
         &::before {
@@ -121,13 +127,9 @@
             }
         }
         
-        @media (max-width: 510px) and (min-width: 361px) {
-            height: 700px;
-        }
-        
-        @media (max-width: 360px) {
+        @media (max-width: 768px) {
             border-radius: 20px;
-            height: 455px;
+            min-height: 455px;
         }
         
         // Фоны для карточек
@@ -236,6 +238,7 @@
                 position: relative;
             }
             
+            
             &::after {
                 content: '';
                 position: absolute;
@@ -272,15 +275,8 @@
                     color: $white;
                     text-decoration: none;
                     transition: all 0.3s ease;
-                }                
-                &:hover {
-                    text-decoration: underline;
                 }
                 
-                &:active {
-                    color: $orange-200;
-                    text-decoration: underline;
-                }
             }
         }
     }

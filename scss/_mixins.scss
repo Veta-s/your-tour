@@ -1,8 +1,24 @@
 @use 'variables' as *;
 
+// Функция для конвертации пикселей в rem
+// Пример: rem(96) вернёт 6rem (96 / 16 = 6)
+@function rem($pixels) {
+  // Если передано число без единиц (например, 96)
+  @if unitless($pixels) {
+    // Делим на 16 (базовый размер браузера) и добавляем единицу rem
+    @return ($pixels / 16) * 1rem;
+  }
+  // Если передано число с единицами (например, 96px)
+  @else {
+    // Убираем единицы, делим на 16 и добавляем rem
+    @return ($pixels / 16px) * 1rem;
+  }
+}
+
 // Base typography mixin used by predefined styles
 @mixin typography($font-size, $font-weight, $line-height, $letter-spacing) {
-  font-size: $font-size;
+  // Конвертируем размер шрифта из px в rem
+  font-size: rem($font-size);
   font-weight: $font-weight;
   line-height: $line-height;
   letter-spacing: $letter-spacing;
@@ -61,7 +77,7 @@
 @mixin responsive-h1 {
   @include h1-desktop;
 
-  @media (max-width: 360px) {
+  @media (max-width: 768px) {
     @include h1-mobile;
   }
 }
@@ -69,7 +85,7 @@
 @mixin responsive-h2 {
   @include h2-desktop;
 
-  @media (max-width: 360px) {
+  @media (max-width: 768px) {
     @include h2-mobile;
   }
 }
@@ -77,7 +93,7 @@
 @mixin responsive-h3 {
   @include h3-desktop;
 
-  @media (max-width: 360px) {
+  @media (max-width: 768px) {
     @include h3-mobile;
   }
 }
@@ -85,7 +101,7 @@
 @mixin responsive-p-big {
   @include p-big-desktop;
 
-  @media (max-width: 360px) {
+  @media (max-width: 768px) {
     @include p-big-mobile;
   }
 }
@@ -93,7 +109,7 @@
 @mixin responsive-p-normal {
   @include p-normal-desktop;
 
-  @media (max-width: 360px) {
+  @media (max-width: 768px) {
     @include p-normal-mobile;
   }
 }
@@ -101,7 +117,7 @@
 @mixin responsive-p-small {
   @include p-small-desktop;
 
-  @media (max-width: 360px) {
+  @media (max-width: 768px) {
     @include p-small-mobile;
   }
 }
@@ -116,15 +132,21 @@
   margin-top: 135px;
   margin-left: auto;
   margin-right: auto;
-  @media (max-width: 1024px) {
-    max-width: auto;
-    margin-left: 53px;
-    margin-right: 53px;
+
+  /* Desktop ≥ 1025px */
+  padding-left: 52px;
+  padding-right: 52px;
+
+  @media (max-width: 1024px) and (min-width: 769px) {
+    /* Tablet */
+    padding-left: 52px;
+    padding-right: 52px;
   }
-  @media (max-width: 360px) {
+
+  @media (max-width: 768px) {
+    /* Mobile */
     margin-top: 75px;
-    max-width: auto;
-    margin-left: 21px;
-    margin-right: 21px;
+    padding-left: 21px;
+    padding-right: 21px;
   }
 }
