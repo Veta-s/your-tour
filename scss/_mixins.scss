@@ -1,24 +1,8 @@
 @use 'variables' as *;
 
-// Функция для конвертации пикселей в rem
-// Пример: rem(96) вернёт 6rem (96 / 16 = 6)
-@function rem($pixels) {
-  // Если передано число без единиц (например, 96)
-  @if unitless($pixels) {
-    // Делим на 16 (базовый размер браузера) и добавляем единицу rem
-    @return ($pixels / 16) * 1rem;
-  }
-  // Если передано число с единицами (например, 96px)
-  @else {
-    // Убираем единицы, делим на 16 и добавляем rem
-    @return ($pixels / 16px) * 1rem;
-  }
-}
-
 // Base typography mixin used by predefined styles
 @mixin typography($font-size, $font-weight, $line-height, $letter-spacing) {
-  // Конвертируем размер шрифта из px в rem
-  font-size: rem($font-size);
+  font-size: $font-size;
   font-weight: $font-weight;
   line-height: $line-height;
   letter-spacing: $letter-spacing;
