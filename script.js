@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    // Размытие хедера при скролле после 450px
+// Blurring of the header when scrolling
     const header = document.querySelector('.header');
 
     window.addEventListener('scroll', function() {
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Плавная прокрутка для якорных ссылок
+// Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Табы для туров
+// Tabs
     const tabs = document.querySelectorAll('.tours__tab');
 
     tabs.forEach(tab => {
@@ -46,21 +46,19 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Маска для телефона
+// Phone mask
     const phoneInput = document.querySelector('#phone');
 
     if (phoneInput) {
-        // Функция для форматирования номера телефона
+
         function formatPhone(value) {
-            // Убираем все символы кроме цифр
+
             const digits = value.replace(/\D/g, '');
-            
-            // Если нет цифр, возвращаем пустую строку
+
             if (digits.length === 0) {
                 return '';
             }
             
-            // Если есть цифры, но меньше 11, форматируем
             if (digits.length <= 11) {
                 let formatted = '+7 (';
                 
@@ -83,13 +81,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 return formatted;
             }
             
-            // Если больше 11 цифр, обрезаем до 11
             const limitedDigits = digits.slice(0, 11);
             return formatPhone(limitedDigits);
         }
 
         phoneInput.addEventListener('input', function(e) {
-            // Если пользователь выделил весь текст и удалил его
             if (e.target.value === '') {
                 e.target.value = '';
                 return;
@@ -99,20 +95,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         phoneInput.addEventListener('focus', function(e) {
-            // Если поле пустое, добавляем префикс
             if (!e.target.value || e.target.value === '') {
                 e.target.value = '+7 (';
             }
         });
 
         phoneInput.addEventListener('blur', function(e) {
-            // Если в поле только префикс, очищаем его
             if (e.target.value === '+7 (') {
                 e.target.value = '';
             }
         });
 
-        // Обработка клавиш для корректного удаления
         phoneInput.addEventListener('keydown', function(e) {
             // Если нажата Backspace и в поле только '+7 (', очищаем поле
             if (e.key === 'Backspace' && e.target.value === '+7 (') {
@@ -120,9 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 e.preventDefault();
             }
             
-            // Если нажата Delete и курсор в начале поля с префиксом
             if (e.key === 'Delete' && e.target.selectionStart <= 4 && e.target.value.startsWith('+7 (')) {
-                // Если после префикса нет цифр, очищаем поле
                 const digits = e.target.value.replace(/\D/g, '');
                 if (digits.length <= 1) {
                     e.target.value = '';
@@ -133,14 +124,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 
-    // ДАТЫ
-    // Валидация дат в формате DD-MM-YYYY
+// Dates
+
+    // DD-MM-YYYY
     const dateFromInput = document.querySelector('#date-from');
     const dateToInput = document.querySelector('#date-to');
 
     if (dateFromInput && dateToInput) {
     
-    // Функция для проверки дат между собой
     function validateDateRange() {
         const fromValue = dateFromInput.value;
         const toValue = dateToInput.value;
@@ -158,7 +149,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 dateToInput.title = 'Дата окончания не может быть раньше даты начала';
                 return false;
             } else {
-                // Убираем подсветку и подсказку если дата корректна
                 if (dateToInput.title === 'Дата окончания не может быть раньше даты начала') {
                     dateToInput.style.borderColor = '';
                     dateToInput.style.boxShadow = '';
@@ -170,18 +160,15 @@ document.addEventListener('DOMContentLoaded', function() {
         return true;
     }
     
-    // Функция для создания маски DD-MM-YYYY
     function createDateMask(input) {
         input.addEventListener('input', function(e) {
             let value = e.target.value.replace(/\D/g, ''); // Убираем все кроме цифр
             let formattedValue = '';
             
-            // Ограничиваем максимальную длину (8 цифр: DDMMYYYY)
             if (value.length > 8) {
                 value = value.substring(0, 8);
             }
             
-            // Форматируем по маске DD.MM.YYYY
             for (let i = 0; i < value.length; i++) {
                 if (i === 2 || i === 4) {
                     formattedValue += '.';
@@ -192,7 +179,6 @@ document.addEventListener('DOMContentLoaded', function() {
             e.target.value = formattedValue;
         });
         
-        // Валидация при вводе
         input.addEventListener('input', function(e) {
             const value = e.target.value;
             if (value && value.length === 10) {
@@ -202,26 +188,22 @@ document.addEventListener('DOMContentLoaded', function() {
                     let hasError = false;
                     let errorMessage = '';
                     
-                    // Валидация года
                     const currentYear = new Date().getFullYear();
                     if (year < currentYear || year > 2100) {
                         hasError = true;
                         errorMessage = 'Год должен быть от ' + currentYear + ' до 2100';
                     }
                     
-                    // Валидация месяца
                     if (month < 1 || month > 12) {
                         hasError = true;
                         errorMessage = 'Месяц должен быть от 01 до 12';
                     }
                     
-                    // Валидация дня
                     if (day < 1 || day > 31) {
                         hasError = true;
                         errorMessage = 'День должен быть от 01 до 31';
                     }
                     
-                    // Проверяем, что дата не в прошлом
                     const inputDate = new Date(year, month - 1, day);
                     const today = new Date();
                     today.setHours(0, 0, 0, 0);
@@ -231,7 +213,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         errorMessage = 'Дата не может быть в прошлом';
                     }
                     
-                    // Подсвечиваем ошибку или убираем подсветку
                     if (hasError) {
                         e.target.style.borderColor = '#ff4444';
                         e.target.style.boxShadow = '0 0 0 2px rgba(255, 68, 68, 0.2)';
@@ -244,40 +225,33 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
             
-            // Проверяем диапазон дат
             validateDateRange();
         });
 
-        // Валидация при потере фокуса
         input.addEventListener('blur', function(e) {
             const value = e.target.value;
             if (value && value.length === 10) {
                 const [day, month, year] = value.split('.').map(num => parseInt(num));
                 
-                // Проверяем корректность даты
                 let hasError = false;
                 let errorMessage = '';
                 
-                // Валидация года
                 const currentYear = new Date().getFullYear();
                 if (year < currentYear || year > 2100) {
                     hasError = true;
                     errorMessage = 'Год должен быть от ' + currentYear + ' до 2100';
                 }
                 
-                // Валидация месяца
                 if (month < 1 || month > 12) {
                     hasError = true;
                     errorMessage = 'Месяц должен быть от 01 до 12';
                 }
                 
-                // Валидация дня
                 if (day < 1 || day > 31) {
                     hasError = true;
                     errorMessage = 'День должен быть от 01 до 31';
                 }
                 
-                // Проверяем, что дата не в прошлом
                 const inputDate = new Date(year, month - 1, day);
                 const today = new Date();
                 today.setHours(0, 0, 0, 0);
@@ -287,7 +261,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     errorMessage = 'Дата не может быть в прошлом';
                 }
                 
-                // Подсвечиваем ошибку или убираем подсветку
                 if (hasError) {
                     e.target.style.borderColor = '#ff4444';
                     e.target.style.boxShadow = '0 0 0 2px rgba(255, 68, 68, 0.2)';
@@ -299,11 +272,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
             
-            // Проверяем диапазон дат
             validateDateRange();
         });
         
-        // Разрешаем только цифры и точки
         input.addEventListener('keydown', function(e) {
             const allowedKeys = ['Backspace', 'Delete', 'Tab', 'ArrowLeft', 'ArrowRight'];
             const isNumber = e.key >= '0' && e.key <= '9';
@@ -314,59 +285,33 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-    
-    // Функция для конвертации Date в формат DD.MM.YYYY
-    function formatDateToDDMMYYYY(date) {
-        const day = String(date.getDate()).padStart(2, '0');
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const year = date.getFullYear();
-        return `${day}.${month}.${year}`;
-    }
-    
-    // Функция для конвертации DD.MM.YYYY в объект Date
-    function parseDDMMYYYY(dateString) {
-        if (!dateString || dateString.length !== 10) return null;
-        const [day, month, year] = dateString.split('.').map(num => parseInt(num));
-        return new Date(year, month - 1, day);
-    }
 
-        // Функция для изменения цвета поля даты
-        function updateDateFieldColor(input) {
+    function updateDateFieldColor(input) {
         if (input.value && input.value.length === 10) {
-                input.style.color = '#1B1F2B'; // $black
-            } else {
-                input.style.color = '#A6A6A6'; // $gray-300
-            }
+            input.style.color = '#1B1F2B'; // $black
+        } else {
+            input.style.color = '#A6A6A6'; // $gray-300
         }
+    }
     
-    // Применяем маски к полям
     createDateMask(dateFromInput);
     createDateMask(dateToInput);
-    
-    // Устанавливаем сегодняшнюю дату как минимальную
-    const today = new Date();
 
-        // Применяем цвета при загрузке
-        updateDateFieldColor(dateFromInput);
-        updateDateFieldColor(dateToInput);
+    updateDateFieldColor(dateFromInput);
+    updateDateFieldColor(dateToInput);
 
-    // При изменении даты "от" обновляем минимальную дату "до"
         dateFromInput.addEventListener('change', function() {
         updateDateFieldColor(this);
         
-        // Проверяем диапазон дат, но не меняем значения
         validateDateRange();
         });
 
-    // При изменении даты "до" проверяем, что она не меньше даты "от"
         dateToInput.addEventListener('change', function() {
         updateDateFieldColor(this);
         
-        // Проверяем диапазон дат, но не меняем значения
         validateDateRange();
         });
 
-    // При фокусе и потере фокуса обновляем цвета
     [dateFromInput, dateToInput].forEach(input => {
         input.addEventListener('focus', function() {
             if (!this.value) {
@@ -380,11 +325,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Изменение цвета select элемента "Выберите направление"
     const directionSelect = document.querySelector('#direction');
 
     if (directionSelect) {
-        // Функция для изменения цвета select
         function updateSelectColor(select) {
             if (select.value) {
                 select.style.color = '#1B1F2B'; // $black для выбранного значения
@@ -393,28 +336,23 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        // Применяем цвет при загрузке
         updateSelectColor(directionSelect);
 
-        // При изменении значения
         directionSelect.addEventListener('change', function() {
             updateSelectColor(this);
         });
 
-        // При фокусе на пустом select
         directionSelect.addEventListener('focus', function() {
             if (!this.value) {
                 this.style.color = '#1B1F2B'; // $black при фокусе
             }
         });
 
-        // При потере фокуса возвращаем исходный цвет
         directionSelect.addEventListener('blur', function() {
             updateSelectColor(this);
         });
     }
 
-    // Валидация email
     const emailInput = document.querySelector('#email');
 
     if (emailInput) {
@@ -439,14 +377,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Обработка отправки формы
     const form = document.querySelector('.form');
 
     if (form) {
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Получаем значения полей
             const name = document.getElementById('name').value.trim();
             const email = document.getElementById('email').value.trim();
             const phone = document.getElementById('phone').value.trim();
@@ -456,7 +392,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const comment = document.getElementById('comment').textContent.trim();
             const agreement = document.getElementById('agreement').checked;
             
-            // Проверяем все обязательные поля
             const requiredFields = form.querySelectorAll('[required]');
             let isValid = true;
             
@@ -471,7 +406,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
 
-            // Дополнительная проверка email
             if (emailInput && emailInput.value) {
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 if (!emailRegex.test(emailInput.value)) {
@@ -482,11 +416,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             if (isValid) {
-                // Форма валидна, можно отправлять
                 console.log('Форма отправлена!', { name, email, phone, dateFrom, dateTo, direction, comment, agreement });
-                // Здесь можно добавить AJAX запрос или другую логику
-                
-                // Прокручиваем к секции туров
+
                 const toursSection = document.querySelector('#tours');
                 if (toursSection) {
                     toursSection.scrollIntoView({ behavior: 'smooth' });
@@ -494,13 +425,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Обработка кнопки сброса
         const resetButton = form.querySelector('.form__reset');
         if (resetButton) {
             resetButton.addEventListener('click', function(e) {
                 e.preventDefault();
                 
-                // Очищаем все поля формы
                 const inputs = form.querySelectorAll('input, select');
                 inputs.forEach(input => {
                     if (input.type === 'checkbox' || input.type === 'radio') {
@@ -508,12 +437,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     } else {
                         input.value = '';
                     }
-                    // Убираем стили ошибок
                     input.style.borderColor = '';
                     input.style.boxShadow = '';
                 });
                 
-                // Очищаем поле комментарий (contenteditable)
                 const commentField = document.getElementById('comment');
                 if (commentField) {
                     commentField.textContent = '';
@@ -522,22 +449,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Анимация появления элементов при скролле
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-
-    // Элементы отображаются сразу без анимации
     const animatedElements = document.querySelectorAll('.tour-card, .review-card, .story-card, .gallery__item');
 
     animatedElements.forEach((el) => {
@@ -546,7 +457,6 @@ document.addEventListener('DOMContentLoaded', function() {
         el.style.transition = 'none';
     });
 
-    // Lazy loading для изображений (когда будут добавлены реальные изображения)
     const images = document.querySelectorAll('img[data-src]');
 
     if (images.length > 0) {
@@ -564,7 +474,6 @@ document.addEventListener('DOMContentLoaded', function() {
         images.forEach(img => imageObserver.observe(img));
     }
 
-    // Обработка кликов по кнопкам социальных сетей
     const socialLinks = document.querySelectorAll('.social-link');
 
     socialLinks.forEach(link => {
@@ -572,26 +481,21 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             const social = this.textContent.toLowerCase();
             console.log(`Переход в ${social}`);
-            // Здесь можно добавить реальные ссылки на соцсети
         });
     });
 
-    // Работа с полем комментария (contenteditable div)
     const commentField = document.querySelector('#comment');
     
     if (commentField) {
-        // Ограничиваем длину текста (500 символов)
         commentField.addEventListener('input', function() {
             const text = this.textContent || this.innerText;
             if (text.length > 500) {
                 this.textContent = text.substring(0, 500);
                 
-                // Показываем уведомление о достижении лимита
                 const notification = document.createElement('div');
                 notification.textContent = 'Достигнут лимит в 500 символов';
                 notification.className = 'limit-notification';
                 
-                // Удаляем предыдущие уведомления
                 const existingNotification = this.parentNode.querySelector('.limit-notification');
                 if (existingNotification) {
                     existingNotification.remove();
@@ -599,7 +503,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 this.parentNode.appendChild(notification);
                 
-                // Убираем уведомление через 3 секунды
                 setTimeout(() => {
                     if (notification.parentNode) {
                         notification.remove();
@@ -608,14 +511,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Предотвращаем вставку HTML
         commentField.addEventListener('paste', function(e) {
             e.preventDefault();
             const text = e.clipboardData.getData('text/plain');
             document.execCommand('insertText', false, text);
         });
         
-        // Предотвращаем вставку изображений и других элементов
         commentField.addEventListener('drop', function(e) {
             e.preventDefault();
         });
