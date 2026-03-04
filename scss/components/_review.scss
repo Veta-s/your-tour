@@ -1,7 +1,6 @@
 @use '../variables' as *;
 @use '../mixins' as *;
 
-/* Reviews Section */
 
 .reviews__container {
     @include section-padding;
@@ -17,7 +16,7 @@
         margin-bottom: 30px;
         color: $black;
     }
-    @media (max-width: 360px) {
+    @media (max-width: 768px) {
         margin-bottom: 20px;
     }
 }
@@ -27,10 +26,8 @@
     & {
         color: $gray-300;
         margin-bottom: 100px;
-        //margin-left: auto;
-        //margin-right: auto;
     }
-    @media (max-width: 360px) {
+    @media (max-width: 768px) {
         margin-bottom: 50px;
     }
 }
@@ -74,7 +71,7 @@
         margin-bottom: 30px;
         flex: 1;
     }
-    @media (max-width: 360px) {
+    @media (max-width: 768px) {
         margin-bottom: 40px;
         padding-right: 5px;
     }
@@ -86,7 +83,7 @@
     gap: 20px;
     justify-content: space-between;
     margin-top: auto;
-    @media (max-width: 360px) {
+    @media (max-width: 768px) {
         margin-top: 5px;
     }
 }
@@ -94,7 +91,7 @@
 .review-card__info {
     flex: 1;
     
-    @media (max-width: 360px) {
+    @media (max-width: 768px) {
         align-self: flex-end;
         text-align: left;
     }

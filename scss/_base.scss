@@ -1,7 +1,6 @@
 @use 'variables' as *;
 @use 'mixins' as *;
 
-/* Reset */
 * {
     margin: 0;
     padding: 0;
@@ -9,36 +8,30 @@
     font-family: $font-family-primary;
 }
 
-/* Base */
 body {
     color: $black;
     background: $beige-100;
-    max-width: 1920px;
-    margin: 0 auto;
+    width: 100%;
+    margin: 0;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     overflow-x: hidden;
 }
 
-/* Layout container — безопасные отступы */
 .container {
   width: 100%;
   margin: 0 auto;
 
-  /* Desktop ≥ 1025px */
   padding-left: 52px;
   padding-right: 52px;
 
   @media (max-width: 1024px) and (min-width: 769px) {
-    /* Tablet 769–1024 */
     padding-left: 52px;
     padding-right: 52px;
   }
 
   @media (max-width: 768px) {
-    /* Mobile ≤ 768 */
     padding-left: 21px;
     padding-right: 21px;
   }
@@ -49,7 +42,6 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0;
 }
 
-/* Ссылки с псевдоэлементом ::after */
 a {
   position: relative;
   text-decoration: none;
@@ -68,7 +60,9 @@ a {
     transition: transform 0.25s ease;
   }
 
-  &:hover::after {
-    transform: scaleX(1);
+  @include hover-desktop {
+    &::after {
+      transform: scaleX(1);
+    }
   }
 }

@@ -1,15 +1,9 @@
 @use '../variables' as *;
 @use '../mixins' as *;
 
-/* Hero Section */
 .hero {
-    position: relative;
-    width: 100vw;                 // full-bleed width
+    width: 100%;
     height: 100vh;
-    left: 50%;                    // center the full-bleed block inside centered body
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -17,7 +11,7 @@
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    @media (max-width: 360px) {
+    @media (max-width: 768px) {
         min-height: 488px;
         background-size: cover;
         background-position: center top;
@@ -51,7 +45,7 @@
     @media (max-width: 1024px) {
         max-width: 400px;
     }
-    @media (max-width: 360px) {
+    @media (max-width: 768px) {
         max-width: 310px;
         margin: 40px 0;
     }
@@ -76,7 +70,7 @@
         @include transition();
     }
 
-    &:hover {
+    @include hover-desktop {
         background: $orange-200;
         color: $white;
     }

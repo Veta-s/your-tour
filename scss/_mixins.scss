@@ -1,30 +1,22 @@
 @use 'variables' as *;
 
-// Функция для конвертации пикселей в rem
-// Пример: rem(96) вернёт 6rem (96 / 16 = 6)
+
 @function rem($pixels) {
-  // Если передано число без единиц (например, 96)
-  @if unitless($pixels) {
-    // Делим на 16 (базовый размер браузера) и добавляем единицу rem
-    @return ($pixels / 16) * 1rem;
+    @if unitless($pixels) {
+        @return ($pixels / 16) * 1rem;
   }
-  // Если передано число с единицами (например, 96px)
-  @else {
-    // Убираем единицы, делим на 16 и добавляем rem
-    @return ($pixels / 16px) * 1rem;
+    @else {
+        @return ($pixels / 16px) * 1rem;
   }
 }
 
-// Base typography mixin used by predefined styles
 @mixin typography($font-size, $font-weight, $line-height, $letter-spacing) {
-  // Конвертируем размер шрифта из px в rem
   font-size: rem($font-size);
   font-weight: $font-weight;
   line-height: $line-height;
   letter-spacing: $letter-spacing;
 }
 
-// Predefined Typography Styles
 @mixin h1-desktop {
   @include typography($font-size-h1, $font-weight-bold, $line-height-h1, $letter-spacing-h1);
 }
@@ -73,7 +65,6 @@
   @include typography($font-size-p-small-mobile, $font-weight-normal, $line-height-p, $letter-spacing-p-small-mobile);
 }
 
-// Responsive Typography Mixins
 @mixin responsive-h1 {
   @include h1-desktop;
 
@@ -122,9 +113,16 @@
   }
 }
 
-// Other Mixins
 @mixin transition($property: all, $duration: 0.3s, $timing: ease) {
   transition: $property $duration $timing;
+}
+
+@mixin hover-desktop {
+  @media (min-width: 1025px) {
+    &:hover {
+      @content;
+    }
+  }
 }
 
 @mixin section-padding {
@@ -133,18 +131,15 @@
   margin-left: auto;
   margin-right: auto;
 
-  /* Desktop ≥ 1025px */
   padding-left: 52px;
   padding-right: 52px;
 
   @media (max-width: 1024px) and (min-width: 769px) {
-    /* Tablet */
     padding-left: 52px;
     padding-right: 52px;
   }
 
   @media (max-width: 768px) {
-    /* Mobile */
     margin-top: 75px;
     padding-left: 21px;
     padding-right: 21px;

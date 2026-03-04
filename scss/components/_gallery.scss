@@ -1,11 +1,10 @@
 @use '../variables' as *;
 @use '../mixins' as *;
 
-/* Gallery Section */
 .gallery {
 
     &__container {
-      margin-top: 132px;
+      margin-top: 135px;
       margin-left: auto;
       margin-right: auto;
       width: 100%;
@@ -14,13 +13,16 @@
       padding-right: 30px;
       text-align: center;
 
-      /* Планшет 769–1024px: свои безопасные отступы */
+      @media (min-width: 1025px) {
+         padding-left: 30px;
+         padding-right: 30px;
+      }
+
       @media (max-width: 1024px) and (min-width: 769px) {
         padding-left: 20px;
         padding-right: 20px;
       }
 
-      /* Мобилка ≤ 768px: как у остальных секций */
       @media (max-width: 768px) {
         margin-top: 75px;
         padding-left: 21px;
@@ -35,7 +37,7 @@
             margin-bottom: 30px;
             color: $black;
         }
-        @media (max-width: 360px) {
+        @media (max-width: 768px) {
             margin-bottom: 20px;
         }
     }
@@ -48,7 +50,7 @@
             margin-left: auto;
             margin-right: auto;
         }
-        @media (max-width: 360px) {
+        @media (max-width: 768px) {
             margin-bottom: 50px;
         }
     }
@@ -57,33 +59,34 @@
         display: flex;
         flex-direction: column;
         gap: 30px;
+        width: 100%;
 
-        // 1920px экран: 3 ряда по 4-5-4 фото
         .gallery__row {
             display: flex;
             gap: 30px;
             justify-content: center;
+            width: 100%;
 
             &:nth-child(1) {
-                // 1 ряд: 4 фото
                 .gallery__item {
-                    width: 444px;
+                    flex: 1 1 444px;
+                    max-width: 444px;
                     height: 301px;
                 }
             }
 
             &:nth-child(2) {
-                // 2 ряд: 5 фото
                 .gallery__item {
-                    width: 349.16px;
+                    flex: 1 1 349px;
+                    max-width: 349.16px;
                     height: 301px;
                 }
             }
 
             &:nth-child(3) {
-                // 3 ряд: 4 фото
                 .gallery__item {
-                    width: 444px;
+                    flex: 1 1 444px;
+                    max-width: 444px;
                     height: 301px;
                 }
             }
@@ -96,25 +99,25 @@
                 gap: 20px;
 
                 &:nth-child(1) {
-                    // 1 ряд: 2 фото
                     .gallery__item {
-                        width: 314.67px;
+                        flex: 1 1 314px;
+                        max-width: 314.67px;
                         height: 300px;
                     }
                 }
 
                 &:nth-child(2) {
-                    // 2 ряд: 2 фото
                     .gallery__item {
-                        width: 231px;
+                        flex: 1 1 231px;
+                        max-width: 231px;
                         height: 301px;
                     }
                 }
 
                 &:nth-child(3) {
-                    // 3 ряд: 2 фото
                     .gallery__item {
-                        width: 314.67px;
+                        flex: 1 1 314px;
+                        max-width: 314.67px;
                         height: 300px;
                     }
                 }
@@ -126,52 +129,52 @@
 
             .gallery__row {
                 &:nth-child(1) {
-                    // 1 ряд: 2 фото
                     .gallery__item {
-                        width: 231px;
+                        flex: 1 1 231px;
+                        max-width: 231px;
                         height: 200px;
                     }
                 }
 
                 &:nth-child(2) {
-                    // 2 ряд: 2 фото
                     .gallery__item {
-                        width: 231px;
+                        flex: 1 1 231px;
+                        max-width: 231px;
                         height: 200px;
                     }
                 }
 
                 &:nth-child(3) {
-                    // 3 ряд: 2 фото
                     .gallery__item {
-                        width: 231px;
+                        flex: 1 1 231px;
+                        max-width: 231px;
                         height: 200px;
                     }
                 }
             }
         }
 
-        @media (max-width: 360px) {
+        @media (max-width: 768px) {
             gap: 18px;
 
             .gallery__row {
                 gap: 18px;
 
                 &:nth-child(1) {
-                    // 1 ряд: только фото 1 и 4
                     .gallery__item {
-                        width: 150px;
+                        flex: 1 1 150px;
+                        max-width: 150px;
                         height: 110px;
                         border-radius: 20px;
                     }
                 }
 
                 &:nth-child(2) {
-                    // 2 ряд: только фото 1, 4, 5
                     gap: 10px;
 
                     .gallery__item {
-                        width: 99.33px;
+                        flex: 1 1 99px;
+                        max-width: 99.33px;
                         height: 110px;
                         border-radius: 20px;
                     }
@@ -179,9 +182,9 @@
 
                 &:nth-child(3) {
                     gap: 10px;
-                    // 3 ряд: только фото 1 и 4
                     .gallery__item {
-                        width: 154px;
+                        flex: 1 1 154px;
+                        max-width: 154px;
                         height: 110px;
                         border-radius: 20px;
                     }
@@ -205,48 +208,40 @@
             display: block;
         }
 
-        // Скрываем фото 2, 7, 13 на экранах меньше 1024px
-        // Фото 2 - второй элемент в первом ряду
         .gallery__row:nth-child(1) &:nth-child(2) {
-            @media (max-width: 1024px) {
+            @media (max-width: 768px) {
                 display: none;
             }
         }
 
-        // Фото 7 - третий элемент во втором ряду
         .gallery__row:nth-child(2) &:nth-child(3) {
-            @media (max-width: 1024px) {
+            @media (max-width: 768px) {
                 display: none;
             }
         }
 
-        // Фото 13 - четвертый элемент в третьем ряду
         .gallery__row:nth-child(3) &:nth-child(4) {
-            @media (max-width: 1024px) {
+            @media (max-width: 768px) {
                 display: none;
             }
         }
 
-        // Скрываем фото для экрана 360px
-        // Первая строка: оставляем только фото 1 и 4
         .gallery__row:nth-child(1) &:nth-child(2),
         .gallery__row:nth-child(1) &:nth-child(3) {
-            @media (max-width: 360px) {
+            @media (max-width: 768px) {
                 display: none;
             }
         }
 
-        // Вторая строка: оставляем только фото 1, 4, 5
         .gallery__row:nth-child(2) &:nth-child(2),
         .gallery__row:nth-child(2) &:nth-child(3) {
-            @media (max-width: 360px) {
+            @media (max-width: 768px) {
                 display: none;
             }
         }
 
-        // Третья строка: оставляем только фото 1, 2 и 4
         .gallery__row:nth-child(3) &:nth-child(3) {
-            @media (max-width: 360px) {
+            @media (max-width: 768px) {
                 display: none;
             }
         }

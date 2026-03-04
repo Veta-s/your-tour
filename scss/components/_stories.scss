@@ -1,7 +1,6 @@
 @use '../variables' as *;
 @use '../mixins' as *;
 
-/* Stories Section */
 .stories {
 
     &__container {
@@ -18,7 +17,7 @@
             margin-bottom: 30px;
             color: $black;
         }
-        @media (max-width: 360px) {
+        @media (max-width: 768px) {
             margin-bottom: 20px;
         }
     }
@@ -32,7 +31,7 @@
             margin-left: auto;
             margin-right: auto;
         }
-        @media (max-width: 360px) {
+        @media (max-width: 768px) {
             margin-bottom: 50px;
         }
     }
@@ -42,7 +41,7 @@
         flex-direction: column;
         gap: 50px;
         overflow: visible;
-        @media (max-width: 360px) {
+        @media (max-width: 768px) {
             gap: 20px;
         }
     }
@@ -74,7 +73,6 @@
                 outline: none;
             }
 
-            // Отключаем глобальный ::after из _base.scss
             &::after {
                 display: none;
             }
@@ -87,9 +85,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(270deg, rgba(0, 0, 0, 0) 0.01%, rgba(0, 0, 0, 0.2) 100%);
-            opacity: 0;
-            transition: opacity 300ms ease;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 100%);
             z-index: 1;
         }
         
@@ -108,11 +104,7 @@
             @include transition();
         }
         
-        &:hover {
-            &::before {
-                opacity: 1;
-            }
-            
+        @include hover-desktop {
             &::after {
                 transform: scale(1.2);
                 @include transition();
@@ -132,7 +124,6 @@
             min-height: 455px;
         }
         
-        // Фоны для карточек
         &--1 {
             &::after {
                 background-image: url('images/stories/storyPhoto1.webp');
@@ -164,7 +155,7 @@
             left: 0;
             right: 0;
             z-index: 2;
-            @media (max-width: 360px) {
+            @media (max-width: 768px) {
                 padding: 30px;
             }
         }
@@ -175,7 +166,7 @@
                 color: $white;
                 margin-bottom: 37px;
             }
-            @media (max-width: 360px) {
+            @media (max-width: 768px) {
                 margin-bottom: 20px;
                 max-width: 60%;
             }
@@ -191,7 +182,7 @@
             @media (max-width: 1024px) {
                 max-width: 70%;
             }
-            @media (max-width: 360px) {
+            @media (max-width: 768px) {
                 margin-bottom: 27px;
                 max-width: 100%;
             }
@@ -222,7 +213,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            @media (max-width: 360px) {
+            @media (max-width: 768px) {
                 margin-right: auto;
                 flex-direction: column;
         }
@@ -252,7 +243,7 @@
                 @include transition();
             }
             
-            &:hover {
+            @include hover-desktop {
                 color: $white;
                 
                 &::after {
@@ -265,7 +256,7 @@
         &__socials {
             display: flex;
             gap: 35px;
-            @media (max-width: 360px) {
+            @media (max-width: 768px) {
                 display: none;
             }
             
@@ -282,7 +273,6 @@
     }
 }
 
-// Стили для кнопки "Подробнее" в карточках историй (аналогично турам)
 .story-card .tour-card__link {
     @include responsive-p-big;
     & {
