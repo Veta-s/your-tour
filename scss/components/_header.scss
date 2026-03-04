@@ -132,6 +132,9 @@
         color: $white;
         text-decoration: none;
     }
+    &::after {
+      display: none;
+    }
 }
 
 

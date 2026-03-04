@@ -73,6 +73,10 @@
     @include hover-desktop {
         background: $orange-200;
         color: $white;
+
+        &::after {
+            display: none;
+        }
     }
 
     &:active {
