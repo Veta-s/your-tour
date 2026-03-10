@@ -2,50 +2,55 @@
 @use '../mixins' as *;
 
 .hero {
-    width: 100%;
-    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    height: 100vh;
     background-image: url('./images/backgrounds/header.webp');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    @media (max-width: 768px) {
+
+    @media (width <= 768px) {
         min-height: 488px;
-        background-size: cover;
         background-position: center top;
+        background-size: cover;
     }
 }
 
 .hero__container {
-    text-align: center;
-    margin-top: 88px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: calc(100vh - 88px);
+    margin-top: 88px;
+    text-align: center;
 }
 
 .hero__title {
     color: $white;
     text-align: center;
+
     @include responsive-h1;
 }
 
 .hero__subtitle {
     @include responsive-p-normal;
+
     & {
-        color: $white;
-        text-align: center;
         max-width: 562px;
         margin: 50px auto;
+        color: $white;
+        text-align: center;
     }
-    @media (max-width: 1024px) {
+
+    @media (width <= 1024px) {
         max-width: 400px;
     }
-    @media (max-width: 768px) {
+
+    @media (width <= 768px) {
         max-width: 310px;
         margin: 40px 0;
     }
@@ -53,26 +58,28 @@
 
 .btn {
     @include responsive-p-small;
+
     & {
         display: inline-flex;
-        padding: 5px 20px;
-        background: $white;
-        color: $black;
-        text-decoration: none;
-        border-radius: 10px;
-        border: none;
-        cursor: pointer;
         align-items: center;
         justify-content: center;
+        padding: 5px 20px;
+        color: $black;
         text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        background: $white;
+        border: none;
+        border-radius: 10px;
     }
+
     & {
-        @include transition();
+        @include transition;
     }
 
     @include hover-desktop {
-        background: $orange-200;
         color: $white;
+        background: $orange-200;
 
         &::after {
             display: none;
@@ -80,8 +87,8 @@
     }
 
     &:active {
-        transform: translateY(0);
         background: $orange-100;
+        transform: translateY(0);
     }
 }
 

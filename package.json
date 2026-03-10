@@ -4,6 +4,7 @@
   "description": "Tourist website project",
   "main": "index.js",
   "scripts": {
+    "lint:scss": "stylelint \"**/*.scss\" --fix",
     "build:css": "sass scss/main.scss styles.css --style compressed",
     "watch:css": "sass scss/main.scss styles.css --watch --style expanded",
     "postcss": "postcss styles.css -o styles.css",
@@ -11,14 +12,23 @@
     "dev": "pnpm run watch:css",
     "start": "pnpm run dev"
   },
-  "keywords": ["tourism", "travel", "website"],
+  "keywords": [
+    "tourism",
+    "travel",
+    "website"
+  ],
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "sass": "^1.69.5",
+    "autoprefixer": "^10.4.16",
+    "cssnano": "^6.0.1",
     "postcss": "^8.4.32",
     "postcss-cli": "^11.0.0",
-    "autoprefixer": "^10.4.16",
-    "cssnano": "^6.0.1"
+    "sass": "^1.69.5",
+    "stylelint": "^17.4.0",
+    "stylelint-config-recess-order": "^7.6.1",
+    "stylelint-config-standard": "^40.0.0",
+    "stylelint-config-standard-scss": "^17.0.0",
+    "stylelint-order": "^7.0.1"
   }
 }

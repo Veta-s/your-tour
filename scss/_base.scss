@@ -2,59 +2,58 @@
 @use 'mixins' as *;
 
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
+    padding: 0;
+    margin: 0;
     font-family: $font-family-primary;
 }
 
 body {
-    color: $black;
-    background: $beige-100;
-    width: 100%;
-    margin: 0;
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
     overflow-x: hidden;
+    color: $black;
+    background: $beige-100;
 }
 
 .container {
   width: 100%;
+  padding-right: 52px;
+  padding-left: 52px;
   margin: 0 auto;
 
-  padding-left: 52px;
-  padding-right: 52px;
-
-  @media (max-width: 1024px) and (min-width: 769px) {
-    padding-left: 52px;
+  @media (width <= 1024px) and (width >= 769px) {
     padding-right: 52px;
+    padding-left: 52px;
   }
 
-  @media (max-width: 768px) {
-    padding-left: 21px;
+  @media (width <= 768px) {
     padding-right: 21px;
+    padding-left: 21px;
   }
 }
 
 h1, h2, h3, h4, h5, h6 {
-    margin: 0;
     padding: 0;
+    margin: 0;
 }
 
 a {
   position: relative;
-  text-decoration: none;
   color: inherit;
+  text-decoration: none;
 
   &::after {
-    content: "";
     position: absolute;
-    left: 0;
     bottom: -2px;
+    left: 0;
     width: 100%;
     height: 1px;
-    background: currentColor;
+    content: "";
+    background: currentcolor;
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.25s ease;
