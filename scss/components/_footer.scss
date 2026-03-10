@@ -181,6 +181,10 @@
         text-decoration: none;
         transition: all 0.3s ease;
 
+        &::after {
+            display: none;
+        }
+
         @media (width <= 768px) {
             gap: 7px;
         }
