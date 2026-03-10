@@ -3,13 +3,26 @@ document.addEventListener('DOMContentLoaded', function() {
 // Blurring of the header when scrolling
     const header = document.querySelector('.header');
 
-    window.addEventListener('scroll', function() {
+    function throttle(func, limit) {
+        let inThrottle;
+        return function() {
+            const args = arguments;
+            const context = this;
+            if (!inThrottle) {
+                func.apply(context, args);
+                inThrottle = true;
+                setTimeout(() => inThrottle = false, limit);
+            }
+        }
+    }
+
+    window.addEventListener('scroll', throttle(function() {
         if (window.scrollY > 450) {
             header.classList.add('header--blurred');
         } else {
             header.classList.remove('header--blurred');
         }
-    });
+    }, 100));
 
 // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -131,19 +144,51 @@ document.addEventListener('DOMContentLoaded', function() {
     const dateToInput = document.querySelector('#date-to');
 
     if (dateFromInput && dateToInput) {
+
+    function isValidDate(value) {
+        if (!value || value.length !== 10) return { isValid: false, message: '' };
+
+        const [day, month, year] = value.split('.').map(num => parseInt(num));
+        if (isNaN(day) || isNaN(month) || isNaN(year)) return { isValid: false, message: 'Некорректная дата' };
+
+        const currentYear = new Date().getFullYear();
+        if (year < currentYear || year > 2100) {
+            return { isValid: false, message: 'Год должен быть от ' + currentYear + ' до 2100' };
+        }
+
+        if (month < 1 || month > 12) {
+            return { isValid: false, message: 'Месяц должен быть от 01 до 12' };
+        }
+
+        if (day < 1 || day > 31) {
+            return { isValid: false, message: 'День должен быть от 01 до 31' };
+        }
+
+        const inputDate = new Date(year, month - 1, day);
+        // Проверка на корректность дня в месяце (например, 31 февраля)
+        if (inputDate.getFullYear() !== year || inputDate.getMonth() !== month - 1 || inputDate.getDate() !== day) {
+            return { isValid: false, message: 'Недопустимая дата' };
+        }
+
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        if (inputDate < today) {
+            return { isValid: false, message: 'Дата не может быть в прошлом' };
+        }
+
+        return { isValid: true, message: '', date: inputDate };
+    }
     
     function validateDateRange() {
         const fromValue = dateFromInput.value;
         const toValue = dateToInput.value;
         
-        if (fromValue && toValue && fromValue.length === 10 && toValue.length === 10) {
-            const [fromDay, fromMonth, fromYear] = fromValue.split('.').map(num => parseInt(num));
-            const [toDay, toMonth, toYear] = toValue.split('.').map(num => parseInt(num));
-            
-            const fromDate = new Date(fromYear, fromMonth - 1, fromDay);
-            const toDate = new Date(toYear, toMonth - 1, toDay);
-            
-            if (toDate < fromDate) {
+        const fromResult = isValidDate(fromValue);
+        const toResult = isValidDate(toValue);
+
+        if (fromResult.isValid && toResult.isValid) {
+            if (toResult.date < fromResult.date) {
                 dateToInput.style.borderColor = '#ff4444';
                 dateToInput.style.boxShadow = '0 0 0 2px rgba(255, 68, 68, 0.2)';
                 dateToInput.title = 'Дата окончания не может быть раньше даты начала';
@@ -179,92 +224,15 @@ document.addEventListener('DOMContentLoaded', function() {
             e.target.value = formattedValue;
         });
         
-        input.addEventListener('input', function(e) {
+        const handleValidation = (e) => {
             const value = e.target.value;
-            if (value && value.length === 10) {
-                const [day, month, year] = value.split('.').map(num => parseInt(num));
-                
-                if (day && month && year) {
-                    let hasError = false;
-                    let errorMessage = '';
-                    
-                    const currentYear = new Date().getFullYear();
-                    if (year < currentYear || year > 2100) {
-                        hasError = true;
-                        errorMessage = 'Год должен быть от ' + currentYear + ' до 2100';
-                    }
-                    
-                    if (month < 1 || month > 12) {
-                        hasError = true;
-                        errorMessage = 'Месяц должен быть от 01 до 12';
-                    }
-                    
-                    if (day < 1 || day > 31) {
-                        hasError = true;
-                        errorMessage = 'День должен быть от 01 до 31';
-                    }
-                    
-                    const inputDate = new Date(year, month - 1, day);
-                    const today = new Date();
-                    today.setHours(0, 0, 0, 0);
-                    
-                    if (inputDate < today) {
-                        hasError = true;
-                        errorMessage = 'Дата не может быть в прошлом';
-                    }
-                    
-                    if (hasError) {
-                        e.target.style.borderColor = '#ff4444';
-                        e.target.style.boxShadow = '0 0 0 2px rgba(255, 68, 68, 0.2)';
-                        e.target.title = errorMessage;
-                    } else {
-                        e.target.style.borderColor = '';
-                        e.target.style.boxShadow = '';
-                        e.target.title = '';
-                    }
-                }
-            }
-            
-            validateDateRange();
-        });
+            const result = isValidDate(value);
 
-        input.addEventListener('blur', function(e) {
-            const value = e.target.value;
             if (value && value.length === 10) {
-                const [day, month, year] = value.split('.').map(num => parseInt(num));
-                
-                let hasError = false;
-                let errorMessage = '';
-                
-                const currentYear = new Date().getFullYear();
-                if (year < currentYear || year > 2100) {
-                    hasError = true;
-                    errorMessage = 'Год должен быть от ' + currentYear + ' до 2100';
-                }
-                
-                if (month < 1 || month > 12) {
-                    hasError = true;
-                    errorMessage = 'Месяц должен быть от 01 до 12';
-                }
-                
-                if (day < 1 || day > 31) {
-                    hasError = true;
-                    errorMessage = 'День должен быть от 01 до 31';
-                }
-                
-                const inputDate = new Date(year, month - 1, day);
-                const today = new Date();
-                today.setHours(0, 0, 0, 0);
-                
-                if (inputDate < today) {
-                    hasError = true;
-                    errorMessage = 'Дата не может быть в прошлом';
-                }
-                
-                if (hasError) {
+                if (!result.isValid) {
                     e.target.style.borderColor = '#ff4444';
                     e.target.style.boxShadow = '0 0 0 2px rgba(255, 68, 68, 0.2)';
-                    e.target.title = errorMessage;
+                    e.target.title = result.message;
                 } else {
                     e.target.style.borderColor = '';
                     e.target.style.boxShadow = '';
@@ -273,7 +241,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             validateDateRange();
-        });
+        };
+
+        input.addEventListener('input', handleValidation);
+        input.addEventListener('blur', handleValidation);
         
         input.addEventListener('keydown', function(e) {
             const allowedKeys = ['Backspace', 'Delete', 'Tab', 'ArrowLeft', 'ArrowRight'];
