@@ -127,47 +127,18 @@
             }
         }
 
-        // @media (max-width: 768px) {
-        //    gap: 24px;
-        //
-        //    .gallery__row {
-        //        &:nth-child(1) {
-        //            .gallery__item {
-        //                flex: 1 1 231px;
-        //                max-width: 231px;
-        //                height: 200px;
-        //            }
-        //        }
-        //
-        //        &:nth-child(2) {
-        //            .gallery__item {
-        //                flex: 1 1 231px;
-        //                max-width: 231px;
-        //                height: 200px;
-        //            }
-        //        }
-        //
-        //        &:nth-child(3) {
-        //            .gallery__item {
-        //                flex: 1 1 231px;
-        //                max-width: 231px;
-        //                height: 200px;
-        //            }
-        //        }
-        //    }
-        // }
-
         @media (width <= 768px) {
             gap: 18px;
 
             .gallery__row {
                 gap: 18px;
+                justify-content: stretch;
 
                 &:nth-child(1) {
                     .gallery__item {
                         flex: 1 1 150px;
-                        max-width: 150px;
-                        height: 110px;
+                        max-width: none;
+                        height: clamp(110px, calc(-25.71px + 42.41vw), 300px);
                         border-radius: 20px;
                     }
                 }
@@ -177,8 +148,8 @@
 
                     .gallery__item {
                         flex: 1 1 99px;
-                        max-width: 99.33px;
-                        height: 110px;
+                        max-width: none;
+                        height: clamp(110px, calc(-25.71px + 42.41vw), 300px);
                         border-radius: 20px;
                     }
                 }
@@ -188,8 +159,8 @@
 
                     .gallery__item {
                         flex: 1 1 154px;
-                        max-width: 154px;
-                        height: 110px;
+                        max-width: none;
+                        height: clamp(110px, calc(-25.71px + 42.41vw), 300px);
                         border-radius: 20px;
                     }
                 }
@@ -207,7 +178,7 @@
             display: block;
             width: 100%;
             height: 100%;
-            object-fit: none;
+            object-fit: cover;
             object-position: center;
         }
 
