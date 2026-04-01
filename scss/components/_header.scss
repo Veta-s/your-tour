@@ -11,7 +11,7 @@
     width: 100%;
     height: 88px;
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, backdrop-filter 0.3s ease;
 
     
     &.header--blurred {
@@ -110,7 +110,7 @@
     }
 
     & {
-        @include transition;
+        @include transition(color);
     }
 
     &::after {

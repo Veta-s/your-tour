@@ -101,14 +101,14 @@
             background-size: cover;
             transform: scale(1);
 
-            @include transition;
+            @include transition(transform);
         }
         
         @include hover-desktop {
             &::after {
                 transform: scale(1.2);
 
-                @include transition;
+                @include transition(transform);
             }
             
             .tour-card__link {
@@ -236,7 +236,7 @@
                 font-weight: $font-weight-medium;
                 color: $white;
                 text-decoration: none;
-                transition: all 0.3s ease;
+                transition: color 0.3s ease;
             }
             
             
@@ -248,7 +248,7 @@
                 background: transparent;
                 border-radius: 50px;
 
-                @include transition;
+                @include transition(background-color);
             }
             
             @include hover-desktop {
@@ -275,7 +275,7 @@
                 & {
                     color: $white;
                     text-decoration: none;
-                    transition: all 0.3s ease;
+                    transition: color 0.3s ease;
                 }
                 
             }
@@ -295,7 +295,7 @@
         color: $white;
         pointer-events: none;
 
-        @include transition;
+        @include transition(color);
     }
     
     &::after {
@@ -306,7 +306,7 @@
         background: transparent;
         border-radius: 50px;
 
-        @include transition;
+        @include transition(background-color);
     }
     
     svg {
@@ -314,7 +314,7 @@
         height: 24px;
         fill: currentcolor;
 
-        @include transition;
+        @include transition(fill);
     }
 }
 

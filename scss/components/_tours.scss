@@ -50,7 +50,7 @@
         }
 
         & {
-            @include transition;
+            @include transition(color);
         }
 
 
@@ -124,12 +124,12 @@
     @include hover-desktop {
         z-index: 20;
 
-        @include transition;
+        @include transition(z-index);
         
         &::after {
             transform: scale(1.2);
 
-            @include transition;
+            @include transition(transform);
         }
     }
 
@@ -152,7 +152,7 @@
         background-size: cover;
         transform: scale(1);
 
-        @include transition;
+        @include transition(transform);
     }
 
 
@@ -213,7 +213,7 @@
         color: $white;
         pointer-events: none;
 
-        @include transition;
+        @include transition(color);
     }
     
     &::after {
@@ -224,7 +224,7 @@
         background: transparent;
         border-radius: 50px;
 
-        @include transition;
+        @include transition(background-color);
     }
 
     &-text {
@@ -262,7 +262,7 @@
         height: 15px;
         fill: currentcolor;
 
-        @include transition;
+        @include transition(fill);
 
         @media (width <= 768px) {
             margin-bottom: 2px;

@@ -112,8 +112,15 @@
   }
 }
 
-@mixin transition($property: all, $duration: 0.3s, $timing: ease) {
-  transition: $property $duration $timing;
+@mixin transition($properties...) {
+  $duration: 0.2s;
+  $timing: ease;
+  $transitions: ();
+
+  @each $property in $properties {
+    $transitions: append($transitions, ($property $duration $timing), comma);
+  }
+  transition: $transitions;
 }
 
 @mixin hover-desktop {

@@ -74,7 +74,7 @@
     }
 
     & {
-        @include transition;
+        @include transition(background-color, color);
     }
 
     @include hover-desktop {
