@@ -27,9 +27,16 @@ document.addEventListener('DOMContentLoaded', function() {
 // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const href = this.getAttribute('href');
+            
+            if (href === '#') {
+                e.preventDefault();
+                return;
+            }
+
+            const target = document.querySelector(href);
             if (target) {
+                e.preventDefault();
                 const headerHeight = header.offsetHeight;
                 const targetPosition = target.offsetTop - headerHeight;
 
@@ -48,15 +55,11 @@ document.addEventListener('DOMContentLoaded', function() {
         tab.addEventListener('click', function(e) {
             e.preventDefault();
 
-            // Убираем активный класс у всех табов
             tabs.forEach(t => t.classList.remove('tours__tab--active'));
 
-            // Добавляем активный класс к текущему табу
             this.classList.add('tours__tab--active');
 
-            // Здесь можно добавить логику для переключения контента
-            console.log('Выбран таб:', this.textContent);
-        });
+            });
     });
 
 // Phone mask
@@ -120,7 +123,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         phoneInput.addEventListener('keydown', function(e) {
-            // Если нажата Backspace и в поле только '+7 (', очищаем поле
             if (e.key === 'Backspace' && e.target.value === '+7 (') {
                 e.target.value = '';
                 e.preventDefault();
@@ -165,7 +167,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         const inputDate = new Date(year, month - 1, day);
-        // Проверка на корректность дня в месяце (например, 31 февраля)
         if (inputDate.getFullYear() !== year || inputDate.getMonth() !== month - 1 || inputDate.getDate() !== day) {
             return { isValid: false, message: 'Недопустимая дата' };
         }
@@ -207,7 +208,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function createDateMask(input) {
         input.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, ''); // Убираем все кроме цифр
+            let value = e.target.value.replace(/\D/g, '');
             let formattedValue = '';
             
             if (value.length > 8) {
@@ -301,9 +302,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (directionSelect) {
         function updateSelectColor(select) {
             if (select.value) {
-                select.style.color = '#1B1F2B'; // $black для выбранного значения
+                select.style.color = '#1B1F2B';
             } else {
-                select.style.color = '#A6A6A6'; // $gray-300 для подсказки
+                select.style.color = '#A6A6A6';
             }
         }
 
@@ -315,7 +316,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         directionSelect.addEventListener('focus', function() {
             if (!this.value) {
-                this.style.color = '#1B1F2B'; // $black при фокусе
+                this.style.color = '#1B1F2B';
             }
         });
 
@@ -353,16 +354,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (form) {
         form.addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            const dateFrom = document.getElementById('date-from').value;
-            const dateTo = document.getElementById('date-to').value;
-            const direction = document.getElementById('direction').value;
-            const comment = document.getElementById('comment').textContent.trim();
-            const agreement = document.getElementById('agreement').checked;
-            
+
             const requiredFields = form.querySelectorAll('[required]');
             let isValid = true;
             
@@ -387,7 +379,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             if (isValid) {
-                console.log('Форма отправлена!', { name, email, phone, dateFrom, dateTo, direction, comment, agreement });
 
                 const toursSection = document.querySelector('#tours');
                 if (toursSection) {
@@ -450,9 +441,7 @@ document.addEventListener('DOMContentLoaded', function() {
     socialLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
-            const social = this.textContent.toLowerCase();
-            console.log(`Переход в ${social}`);
-        });
+            });
     });
 
     const commentField = document.querySelector('#comment');
@@ -492,6 +481,4 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
         });
     }
-
-    console.log('YourTour website loaded successfully!');
 });
